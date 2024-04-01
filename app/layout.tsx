@@ -3,6 +3,10 @@ import "./globals.css";
 
 import { Rubik } from "next/font/google";
 
+import Footer from "@/components/footer";
+import Navbar from "@/components/navbar";
+import { ThemeProvider } from "@/components/theme";
+
 const font = Rubik({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -17,7 +21,20 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={font.className}>{children}</body>
+			<body className={font.className}>
+				<main className="min-h-screen w-full bg-gradient-to-b from-[#1DB954] to-background">
+					<ThemeProvider
+						attribute="class"
+						defaultTheme="system"
+						enableSystem
+						disableTransitionOnChange
+					>
+						<Navbar />
+						<div className="flex pt-48">{children}</div>
+						<Footer />
+					</ThemeProvider>
+				</main>
+			</body>
 		</html>
 	);
 }
