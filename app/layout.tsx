@@ -22,7 +22,7 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className={font.className}>
-				<main className="min-h-screen w-full bg-gradient-to-b from-[#1DB954] to-background">
+				<main className="min-h-screen w-full bg-gradient-to-t from-[#1DB954] to-background">
 					<ThemeProvider
 						attribute="class"
 						defaultTheme="system"
