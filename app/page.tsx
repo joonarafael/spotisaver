@@ -2,16 +2,18 @@
 
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
-import { FaArrowCircleRight, FaSpotify } from "react-icons/fa";
+import { FaArrowCircleRight } from "react-icons/fa";
 
 import retrieveID from "@/actions/retrieveid";
 import Container from "@/components/container";
+import Title from "@/components/title";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 export const HomePage = () => {
 	const router = useRouter();
 	const [isPending, startTransition] = useTransition();
+	const [error, setError] = useState("");
 
 	const [url, setUrl] = useState("");
 
@@ -21,15 +23,19 @@ export const HomePage = () => {
 		}
 
 		startTransition(() => {
+			setError("");
+
 			retrieveID(url)
 				.then((data) => {
 					if (!data) {
+						setError("Invalid ID/URL provided.");
 						return;
 					}
 
 					router.push(`/analyze?listId=${data}`);
 				})
 				.catch((error) => {
+					setError("Something went wrong!");
 					console.log(error);
 				});
 		});
@@ -38,11 +44,7 @@ export const HomePage = () => {
 	return (
 		<Container>
 			<div className="flex text-center flex-col gap-12 w-full justify-center items-center">
-				<div className="flex flex-row items-center drop-shadow-md text-[#1DB954]">
-					<h1 className="text-4xl font-bold">SP</h1>
-					<FaSpotify className="w-7 h-7" />
-					<h1 className="text-4xl font-bold">TISAVER</h1>
-				</div>
+				<Title />
 				<div className="flex flex-col gap-4">
 					<h1 className="text-2xl">{`LET'S CHECK YOUR PLAYLIST!`}</h1>
 					<p>
@@ -58,7 +60,6 @@ export const HomePage = () => {
 						onChange={(e) => setUrl(e.target.value)}
 					/>
 					<Button
-						variant="secondary"
 						className="gap-2 items-center"
 						disabled={url.length === 0}
 						onClick={onSubmit}
@@ -66,6 +67,9 @@ export const HomePage = () => {
 						<p>ANALYZE IT</p>
 						<FaArrowCircleRight />
 					</Button>
+					{error && (
+						<div className="bg-destructive/50 rounded-lg p-2">{error}</div>
+					)}
 				</div>
 			</div>
 		</Container>

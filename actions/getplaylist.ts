@@ -1,13 +1,17 @@
 "use server";
 
-import { PLAYLIST_URL_REGEX } from "@/constants/regex";
+import retrieveID from "./retrieveid";
 
-export default async function getPlaylist(URL: string) {
-	if (!URL || typeof URL !== "string") {
-		return null;
+export default async function getPlaylist(input: string) {
+	if (!input || typeof input !== "string") {
+		return { error: "Invalid input!" };
 	}
 
-	const validInput = URL.match(PLAYLIST_URL_REGEX);
+	const validatedInput = await retrieveID(input);
 
-	return validInput;
+	if (!validatedInput) {
+		return { error: "Invalid input!" };
+	}
+
+	return { success: "Input is valid." };
 }
