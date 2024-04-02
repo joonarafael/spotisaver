@@ -1,14 +1,14 @@
 "use client";
 
-import { useTheme } from "next-themes";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import { BsMoonStars } from "react-icons/bs";
-import { IoHome, IoInformationCircle, IoStatsChart } from "react-icons/io5";
-import { MdOutlineWbSunny } from "react-icons/md";
-import { RiFileDownloadFill } from "react-icons/ri";
+import { useTheme } from 'next-themes';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { BsMoonStars } from 'react-icons/bs';
+import { IoHome, IoInformationCircle } from 'react-icons/io5';
+import { MdOutlineWbSunny } from 'react-icons/md';
+import { RiFileDownloadFill } from 'react-icons/ri';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 
 const Navbar = () => {
 	const router = useRouter();
