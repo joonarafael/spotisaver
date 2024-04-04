@@ -22,7 +22,7 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className={font.className}>
-				<main className="min-h-screen w-full bg-gradient-to-t from-[#1DB954] to-background">
+				<main className="bg-background">
 					<ThemeProvider
 						attribute="class"
 						defaultTheme="system"
@@ -30,7 +30,7 @@ export default function RootLayout({
 						disableTransitionOnChange
 					>
 						<Navbar />
-						<div className="flex pt-48">{children}</div>
+						<div className="mt-24">{children}</div>
 						<Footer />
 					</ThemeProvider>
 				</main>

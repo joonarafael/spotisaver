@@ -34,16 +34,8 @@ const Navbar = () => {
 					</Button>
 				</div>
 				<h1 className="text-xs text-rose-500">
-					PLEASE{" "}
-					<strong
-						className="hover:underline cursor-pointer"
-						onClick={() => {
-							window.location.reload();
-						}}
-					>
-						RELOAD PAGE
-					</strong>{" "}
-					IF MENU LOADING IS NOT SUCCESSFUL.
+					PLEASE <strong>RELOAD PAGE</strong> IF MENU LOADING IS NOT
+					SUCCESSFUL...
 				</h1>
 				<div>
 					<Button className="flex flex-row gap-2" variant="ghost" disabled>
@@ -55,7 +47,7 @@ const Navbar = () => {
 	}
 
 	return (
-		<div className="fixed border-b-2 drop-shadow-sm w-full bg-background">
+		<div className="border-b-2 drop-shadow-sm w-full">
 			<div className="flex justify-between gap-4 m-4">
 				<div className="flex flex-wrap gap-4">
 					<Button

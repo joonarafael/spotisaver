@@ -5,13 +5,14 @@ import { useEffect, useState } from "react";
 import { BeatLoader } from "react-spinners";
 
 import getPlaylist from "@/actions/spotify/getplaylist";
+import TrackList from "@/components/tracklist";
 import { Button } from "@/components/ui/button";
 
-interface ExportClientProps {
+interface ExportAppProps {
 	playlistId?: string;
 }
 
-const ExportClient = ({ playlistId }: ExportClientProps) => {
+const ExportApp = ({ playlistId }: ExportAppProps) => {
 	const router = useRouter();
 	const [data, setData] = useState<any>(null);
 	const [error, setError] = useState("");
@@ -55,22 +56,33 @@ const ExportClient = ({ playlistId }: ExportClientProps) => {
 	if (!data) {
 		return (
 			<div>
-				<BeatLoader />
+				<BeatLoader color="silver" />
 			</div>
 		);
 	}
 
 	return (
-		<div className="flex min-w-[80vw] gap-4 flex-col p-4 bg-background rounded-xl drop-shadow-lg">
-			<Button
-				onClick={() => {
-					window.open(data.external_urls.spotify, "_blank");
-				}}
-				className="h-full font-light"
-				variant="ghost"
-			>
-				Open this playlist in Spotify
-			</Button>
+		<div className="flex min-w-[80vw] gap-6 flex-col p-4 bg-secondary rounded-xl drop-shadow-lg">
+			<div className="flex w-full flex-row gap-4">
+				<Button
+					onClick={() => {
+						window.open(data.external_urls.spotify, "_blank");
+					}}
+					className="h-full font-light w-full text-[#1DB954]"
+					variant="outline"
+				>
+					Open this playlist in Spotify
+				</Button>
+				<Button
+					onClick={() => {
+						router.push("/export");
+					}}
+					className="h-full font-light w-full"
+					variant="destructive"
+				>
+					Choose another playlist
+				</Button>
+			</div>
 			<div className="flex w-full items-end gap-4 flex-wrap">
 				<img
 					className="rounded-xl"
@@ -85,17 +97,25 @@ const ExportClient = ({ playlistId }: ExportClientProps) => {
 					<h2 className="font-light">{data.description}</h2>
 				</div>
 			</div>
-			<Button
-				onClick={() => {
-					router.push("/export");
-				}}
-				className="h-full font-light"
-				variant="destructive"
-			>
-				Choose another playlist
-			</Button>
+			<TrackList tracklist={data.tracks.items} />
+			{data.tracks.total > 100 && (
+				<div className="flex flex-col text-center justify-center items-center gap-2">
+					<h1 className="text-sm">
+						Displaying only the first 100 songs of the playlist.
+					</h1>
+					<Button
+						onClick={() => {
+							window.open(data.external_urls.spotify, "_blank");
+						}}
+						className="w-min font-light text-[#1DB954]"
+						variant="outline"
+					>
+						Open this playlist in Spotify to view full track list!
+					</Button>
+				</div>
+			)}
 		</div>
 	);
 };
 
-export default ExportClient;
+export default ExportApp;
