@@ -10,7 +10,7 @@ import Title from "@/components/title";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
-export const HomePage = () => {
+const HomePage = () => {
 	const router = useRouter();
 	const [isPending, startTransition] = useTransition();
 	const [error, setError] = useState("");

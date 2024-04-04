@@ -3,7 +3,7 @@
 import Container from "@/components/container";
 import Title from "@/components/title";
 
-export const AboutPage = () => {
+const AboutPage = () => {
 	return (
 		<Container>
 			<div className="flex text-center flex-col gap-12 w-full justify-center items-center">

@@ -1,14 +1,14 @@
 "use client";
 
-import { useTheme } from 'next-themes';
-import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import { BsMoonStars } from 'react-icons/bs';
-import { IoHome, IoInformationCircle } from 'react-icons/io5';
-import { MdOutlineWbSunny } from 'react-icons/md';
-import { RiFileDownloadFill } from 'react-icons/ri';
+import { useTheme } from "next-themes";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { BsMoonStars } from "react-icons/bs";
+import { IoHome, IoInformationCircle } from "react-icons/io5";
+import { MdOutlineWbSunny } from "react-icons/md";
+import { RiFileDownloadFill } from "react-icons/ri";
 
-import { Button } from '@/components/ui/button';
+import { Button } from "@/components/ui/button";
 
 const Navbar = () => {
 	const router = useRouter();
@@ -21,7 +21,7 @@ const Navbar = () => {
 
 	if (!mounted || typeof theme === "undefined") {
 		return (
-			<div className="flex justify-between gap-4 m-4">
+			<div className="flex justify-between gap-4 m-4 items-center">
 				<div className="flex flex-wrap gap-4">
 					<Button className="flex flex-row gap-2" variant="ghost" disabled>
 						<p>Loading...</p>
@@ -33,6 +33,18 @@ const Navbar = () => {
 						<p>Loading...</p>
 					</Button>
 				</div>
+				<h1 className="text-xs text-rose-500">
+					PLEASE{" "}
+					<strong
+						className="hover:underline cursor-pointer"
+						onClick={() => {
+							window.location.reload();
+						}}
+					>
+						RELOAD PAGE
+					</strong>{" "}
+					IF MENU LOADING IS NOT SUCCESSFUL.
+				</h1>
 				<div>
 					<Button className="flex flex-row gap-2" variant="ghost" disabled>
 						<p>Loading...</p>
