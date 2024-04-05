@@ -8,11 +8,11 @@ import getPlaylist from "@/actions/spotify/getplaylist";
 import TrackList from "@/components/tracklist";
 import { Button } from "@/components/ui/button";
 
-interface ExportAppProps {
+interface AnalyzeAppProps {
 	playlistId?: string;
 }
 
-const ExportApp = ({ playlistId }: ExportAppProps) => {
+const AnalyzeApp = ({ playlistId }: AnalyzeAppProps) => {
 	const router = useRouter();
 	const [data, setData] = useState<any>(null);
 	const [error, setError] = useState("");
@@ -61,7 +61,7 @@ const ExportApp = ({ playlistId }: ExportAppProps) => {
 		);
 	}
 
-	const overflow = data.tracks.total > 10;
+	const overflow = data.tracks.total > 100;
 
 	return (
 		<div className="flex min-w-[80vw] gap-6 flex-col p-4 bg-secondary rounded-xl drop-shadow-lg">
@@ -77,7 +77,7 @@ const ExportApp = ({ playlistId }: ExportAppProps) => {
 				</Button>
 				<Button
 					onClick={() => {
-						router.push("/export");
+						router.push("/analyze");
 					}}
 					className="h-full font-light w-full"
 					variant="destructive"
@@ -99,15 +99,11 @@ const ExportApp = ({ playlistId }: ExportAppProps) => {
 					<h2 className="font-light">{data.description}</h2>
 				</div>
 			</div>
-			<TrackList
-				tracklist={data.tracks.items}
-				hideTen={overflow}
-				overflow={overflow}
-			/>
+			<TrackList tracklist={data.tracks.items} overflow={overflow} />
 			{overflow && (
 				<div className="flex flex-col text-center justify-center items-center gap-2">
 					<h1 className="text-sm">
-						Displaying only the first 10 songs of the playlist.
+						Displaying only the first 100 songs of the playlist.
 					</h1>
 					<Button
 						onClick={() => {
@@ -124,4 +120,4 @@ const ExportApp = ({ playlistId }: ExportAppProps) => {
 	);
 };
 
-export default ExportApp;
+export default AnalyzeApp;

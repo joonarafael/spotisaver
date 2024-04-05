@@ -91,7 +91,7 @@ const Navbar = () => {
 							}}
 						>
 							<BsMoonStars />
-							<p>Dark Mode</p>
+							<p>Turn Lights Off</p>
 						</Button>
 					) : (
 						<Button
@@ -102,7 +102,7 @@ const Navbar = () => {
 							}}
 						>
 							<MdOutlineWbSunny className="w-5 h-5" />
-							<p>Light Mode</p>
+							<p>Turn Lights On</p>
 						</Button>
 					)}
 				</div>
