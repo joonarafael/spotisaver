@@ -7,6 +7,9 @@ import { BeatLoader } from "react-spinners";
 import getPlaylist from "@/actions/spotify/getplaylist";
 import TrackList from "@/components/tracklist";
 import { Button } from "@/components/ui/button";
+import { Track } from "@/types";
+
+import combineTrackList from "../client/combinetracklist";
 
 interface AnalyzeAppProps {
 	playlistId?: string;
@@ -15,6 +18,7 @@ interface AnalyzeAppProps {
 const AnalyzeApp = ({ playlistId }: AnalyzeAppProps) => {
 	const router = useRouter();
 	const [data, setData] = useState<any>(null);
+	const [trackList, setTrackList] = useState<Track[]>([]);
 	const [error, setError] = useState("");
 
 	useEffect(() => {
@@ -25,8 +29,10 @@ const AnalyzeApp = ({ playlistId }: AnalyzeAppProps) => {
 
 			const res = await getPlaylist(playlistId);
 
+			setTrackList(combineTrackList(res.data));
+
 			if (res.success) {
-				setData(res.data);
+				setData(res.data[0]);
 			} else if (res.error) {
 				setError(res.error);
 			}

@@ -125,7 +125,7 @@ const TrackList = ({ tracklist, hideTen, overflow }: TrackListProps) => {
 										<em>{track.track?.album?.name ?? "N/A"}</em>
 									</h1>
 									<h2 className="font-light">
-										{track.track?.album?.release_date ?? "N/A"}
+										{track.track?.album?.release_date?.toString() ?? "N/A"}
 									</h2>
 								</div>
 							</div>

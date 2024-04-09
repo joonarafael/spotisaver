@@ -1,6 +1,10 @@
 # CHANGELOG
 
-## 2024
+## Beta
+
+### 2024
+
+- **0.1.3**: Full tracklist fetching & more robust tracklist type conversion
 
 - **0.1.2**: Tracklist received more customization
 
