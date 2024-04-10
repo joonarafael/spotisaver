@@ -51,6 +51,14 @@ export type Track = {
 	};
 };
 
+export type SimplerTrack = {
+	album?: Date | string | null;
+	release_date?: Date | string | null;
+	artists: string[] | null;
+	id: string;
+	name: string;
+};
+
 export type Playlist = {
 	collaborative?: boolean | null;
 	description?: string | null;
@@ -72,4 +80,5 @@ export type Playlist = {
 		type?: string | null;
 	};
 	public: boolean;
+	track_count: number;
 };

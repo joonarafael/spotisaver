@@ -1,13 +1,13 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import { BeatLoader } from "react-spinners";
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { BeatLoader } from 'react-spinners';
 
-import getPlaylist from "@/actions/spotify/getplaylist";
-import TrackList from "@/components/tracklist";
-import { Button } from "@/components/ui/button";
-import { Track } from "@/types";
+import getPlaylist from '@/actions/spotify/getplaylist';
+import TrackList from '@/components/tracklist';
+import { Button } from '@/components/ui/button';
+import { Playlist, Track } from '@/types';
 
 interface AnalyzeAppProps {
 	playlistId?: string;
@@ -15,7 +15,7 @@ interface AnalyzeAppProps {
 
 const AnalyzeApp = ({ playlistId }: AnalyzeAppProps) => {
 	const router = useRouter();
-	const [data, setData] = useState<any>(null);
+	const [header, setHeader] = useState<Playlist | null>(null);
 	const [trackList, setTrackList] = useState<Track[]>([]);
 	const [error, setError] = useState("");
 
@@ -27,8 +27,10 @@ const AnalyzeApp = ({ playlistId }: AnalyzeAppProps) => {
 
 			const res = await getPlaylist(playlistId);
 
+			console.log(res);
+
 			if (res.success) {
-				setData(res.header);
+				setHeader(res.header);
 				setTrackList(res.tracks);
 			} else if (res.error) {
 				setError(res.error);
@@ -56,7 +58,7 @@ const AnalyzeApp = ({ playlistId }: AnalyzeAppProps) => {
 		);
 	}
 
-	if (!data) {
+	if (!header) {
 		return (
 			<div>
 				<BeatLoader color="silver" />
@@ -71,10 +73,12 @@ const AnalyzeApp = ({ playlistId }: AnalyzeAppProps) => {
 			<div className="flex w-full flex-col md:flex-row gap-4">
 				<Button
 					onClick={() => {
-						window.open(data.external_urls.spotify, "_blank");
+						window.open(
+							header?.external_urls?.spotify ?? "https://open.spotify.com/",
+							"_blank"
+						);
 					}}
-					className="h-full font-light w-full text-[#1DB954]"
-					variant="outline"
+					className="h-full font-bold w-full text-[#1DB954]"
 				>
 					Open this playlist in Spotify
 				</Button>
@@ -82,25 +86,33 @@ const AnalyzeApp = ({ playlistId }: AnalyzeAppProps) => {
 					onClick={() => {
 						router.push("/Analyze");
 					}}
-					className="h-full font-light w-full"
+					className="h-full w-full"
 					variant="destructive"
 				>
 					Choose another playlist
 				</Button>
 			</div>
 			<div className="flex w-full items-end gap-4 flex-wrap">
-				<img
-					className="rounded-xl"
-					width="256"
-					height="256"
-					src={data.images[0].url}
-					alt="playlist image"
-				/>
+				{header.images && (
+					<img
+						className="rounded-xl"
+						width="256"
+						height="256"
+						src={header?.images[0]?.url}
+						alt="playlist image"
+					/>
+				)}
+
 				<div className="text-left flex flex-col gap-4">
-					<h3 className="font-light text-2xl">{data.owner.display_name}</h3>
-					<h1 className="text-6xl font-bold">{data.name}</h1>
-					<h2 className="font-light">{data.description}</h2>
+					<h3 className="font-light text-2xl">{header.owner.display_name}</h3>
+					<h1 className="text-7xl font-bold">{header.name}</h1>
+					{header.description && (
+						<h2 className="font-light">{`'${header.description}'`}</h2>
+					)}
 				</div>
+			</div>
+			<div className="w-full text-left">
+				<p>{header.track_count} tracks</p>
 			</div>
 			<TrackList tracklist={trackList} overflow={overflow} />
 			{overflow && (
@@ -110,7 +122,10 @@ const AnalyzeApp = ({ playlistId }: AnalyzeAppProps) => {
 					</h1>
 					<Button
 						onClick={() => {
-							window.open(data.external_urls.spotify, "_blank");
+							window.open(
+								header?.external_urls?.spotify ?? "https://open.spotify.com/",
+								"_blank"
+							);
 						}}
 						className="w-min font-light text-[#1DB954]"
 						variant="outline"

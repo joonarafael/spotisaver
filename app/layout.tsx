@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-import { Rubik } from "next/font/google";
+import { Inter_Tight } from "next/font/google";
 
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 import { ThemeProvider } from "@/components/theme";
 
-const font = Rubik({ subsets: ["latin"] });
+const font = Inter_Tight({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
 	title: "Spotisaver",

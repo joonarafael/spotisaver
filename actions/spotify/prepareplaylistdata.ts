@@ -1,6 +1,6 @@
 "use server";
 
-import { Playlist, SpotifyImage } from "@/types";
+import { Playlist, SpotifyImage } from '@/types';
 
 function generateImageList(input: any) {
 	let imageList: SpotifyImage[] = [];
@@ -40,6 +40,7 @@ export default async function generateSafePlaylist(input: any) {
 			type: input?.owner?.type,
 		},
 		public: input.public,
+		track_count: input.tracks.total,
 	};
 
 	return safePlaylist;
