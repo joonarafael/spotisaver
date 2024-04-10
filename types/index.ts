@@ -50,3 +50,26 @@ export type Track = {
 		type?: string | null;
 	};
 };
+
+export type Playlist = {
+	collaborative?: boolean | null;
+	description?: string | null;
+	external_urls?: {
+		spotify?: string | null;
+	} | null;
+	followers?: {
+		total?: number | null;
+	} | null;
+	id: string;
+	images?: SpotifyImage[];
+	name: string;
+	owner: {
+		display_name?: string | null;
+		external_urls?: {
+			spotify?: string | null;
+		} | null;
+		id: string;
+		type?: string | null;
+	};
+	public: boolean;
+};

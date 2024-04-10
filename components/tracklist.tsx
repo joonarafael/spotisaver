@@ -24,6 +24,10 @@ const OPACITY_TABLE = [
 const TrackList = ({ tracklist, hideTen, overflow }: TrackListProps) => {
 	let finalArray: Track[] = tracklist;
 
+	if (finalArray.length > 100) {
+		finalArray = finalArray.slice(0, 100);
+	}
+
 	if (hideTen && finalArray.length > 10) {
 		finalArray = finalArray.slice(0, 10);
 	}

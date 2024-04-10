@@ -23,7 +23,7 @@ const AnalyzeClient = () => {
 
 	return (
 		<div className="flex text-center flex-col gap-12 w-full justify-center items-center">
-			<h1 className="text-2xl">{`ANALYZING YOUR PLAYLIST`}</h1>
+			<h1 className="text-2xl">{`ANALYZE`}</h1>
 			<AnalyzeApp playlistId={listId} />
 		</div>
 	);

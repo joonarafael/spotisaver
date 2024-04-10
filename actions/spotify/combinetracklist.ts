@@ -1,3 +1,5 @@
+"use server";
+
 import { Artist, SpotifyImage, Track } from "@/types";
 
 function generateArtistList(input: any) {
@@ -89,7 +91,7 @@ function convertToSafeTracks(input: any) {
 	return safeTracks;
 }
 
-export default function combineTrackList(data: any) {
+export default async function combineTrackList(data: any) {
 	let tracklist: Track[] = [];
 
 	const firstChunk = convertToSafeTracks(data[0].tracks.items);

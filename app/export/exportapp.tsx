@@ -1,15 +1,13 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import { BeatLoader } from "react-spinners";
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { BeatLoader } from 'react-spinners';
 
-import getPlaylist from "@/actions/spotify/getplaylist";
-import TrackList from "@/components/tracklist";
-import { Button } from "@/components/ui/button";
-import { Track } from "@/types";
-
-import combineTrackList from "../client/combinetracklist";
+import getPlaylist from '@/actions/spotify/getplaylist';
+import TrackList from '@/components/tracklist';
+import { Button } from '@/components/ui/button';
+import { Track } from '@/types';
 
 interface ExportAppProps {
 	playlistId?: string;
@@ -29,10 +27,9 @@ const ExportApp = ({ playlistId }: ExportAppProps) => {
 
 			const res = await getPlaylist(playlistId);
 
-			setTrackList(combineTrackList(res.data));
-
 			if (res.success) {
-				setData(res.data[0]);
+				setData(res.header);
+				setTrackList(res.tracks);
 			} else if (res.error) {
 				setError(res.error);
 			}
@@ -67,7 +64,7 @@ const ExportApp = ({ playlistId }: ExportAppProps) => {
 		);
 	}
 
-	const overflow = data.tracks.total > 10;
+	const overflow = trackList.length > 10;
 
 	const exportJSON = () => {
 		try {
@@ -142,13 +139,13 @@ const ExportApp = ({ playlistId }: ExportAppProps) => {
 					</Button>
 				</div>
 				<div className="flex w-full flex-col md:flex-row gap-4 items-center">
-					<div className="min-w-20">EXCEL</div>
+					<div className="min-w-20">CSV</div>
 					<Button
 						onClick={() => {}}
 						className="h-full font-light w-full"
 						disabled
 					>
-						Export detailed tracklist as EXCEL
+						Export detailed tracklist as CSV
 					</Button>
 					<Button
 						onClick={() => {}}
@@ -156,15 +153,11 @@ const ExportApp = ({ playlistId }: ExportAppProps) => {
 						variant="outline"
 						disabled
 					>
-						Export simplified tracklist as EXCEL
+						Export simplified tracklist as CSV
 					</Button>
 				</div>
 			</div>
-			<TrackList
-				tracklist={data.tracks.items}
-				hideTen={overflow}
-				overflow={overflow}
-			/>
+			<TrackList tracklist={trackList} hideTen={overflow} overflow={overflow} />
 			{overflow && (
 				<div className="flex flex-col text-center justify-center items-center gap-2">
 					<h1 className="text-sm">

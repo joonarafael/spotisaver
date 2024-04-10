@@ -23,7 +23,7 @@ const ExportClient = () => {
 
 	return (
 		<div className="flex text-center flex-col gap-12 w-full justify-center items-center">
-			<h1 className="text-2xl">{`EXPORT YOUR PLAYLIST`}</h1>
+			<h1 className="text-2xl">{`EXPORT`}</h1>
 			<ExportApp playlistId={listId} />
 		</div>
 	);

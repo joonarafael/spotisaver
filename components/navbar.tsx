@@ -23,23 +23,40 @@ const Navbar = () => {
 		return (
 			<div className="flex justify-between gap-4 m-4 items-center">
 				<div className="flex flex-wrap gap-4">
-					<Button className="flex flex-row gap-2" variant="ghost" disabled>
-						<p>Loading...</p>
+					<Button
+						className="flex flex-row gap-2"
+						variant="secondary"
+						onClick={() => {
+							router.push("/");
+						}}
+					>
+						<IoHome />
+						<p>Home</p>
 					</Button>
-					<Button className="flex flex-row gap-2" variant="ghost" disabled>
-						<p>Loading...</p>
+					<Button
+						className="flex flex-row gap-2"
+						variant="secondary"
+						onClick={() => {
+							router.push("/export");
+						}}
+					>
+						<RiFileDownloadFill className="w-5 h-5" />
+						<p>Export</p>
 					</Button>
-					<Button className="flex flex-row gap-2" variant="ghost" disabled>
-						<p>Loading...</p>
+					<Button
+						className="flex flex-row gap-2"
+						variant="secondary"
+						onClick={() => {
+							router.push("/about");
+						}}
+					>
+						<IoInformationCircle className="w-5 h-5" />
+						<p>About</p>
 					</Button>
 				</div>
-				<h1 className="text-xs text-rose-500">
-					PLEASE <strong>RELOAD PAGE</strong> IF MENU LOADING IS NOT
-					SUCCESSFUL...
-				</h1>
 				<div>
 					<Button className="flex flex-row gap-2" variant="ghost" disabled>
-						<p>Loading...</p>
+						<p>Loading theme...</p>
 					</Button>
 				</div>
 			</div>

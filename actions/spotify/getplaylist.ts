@@ -1,7 +1,9 @@
 "use server";
 
 import retrieveID from "../retrieveid";
+import combineTrackList from "./combinetracklist";
 import getToken from "./gettoken";
+import generateSafePlaylist from "./prepareplaylistdata";
 
 export default async function getPlaylist(input: string) {
 	if (!input || typeof input !== "string") {
@@ -56,9 +58,16 @@ export default async function getPlaylist(input: string) {
 			}
 		}
 
-		return { success: "Playlist fetching successful.", data: playlistData };
-	} catch (e) {
-		console.log(e);
+		const playlistHeader = await generateSafePlaylist(playlistData[0]);
+		const playlistTracks = await combineTrackList(playlistData);
+
+		return {
+			success: "Playlist fetching successful.",
+			header: playlistHeader,
+			tracks: playlistTracks,
+		};
+	} catch (err) {
+		console.log(err);
 		return { error: "Playlist fetching was unsuccessful." };
 	}
 }

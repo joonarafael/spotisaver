@@ -9,8 +9,6 @@ import TrackList from "@/components/tracklist";
 import { Button } from "@/components/ui/button";
 import { Track } from "@/types";
 
-import combineTrackList from "../client/combinetracklist";
-
 interface AnalyzeAppProps {
 	playlistId?: string;
 }
@@ -29,10 +27,9 @@ const AnalyzeApp = ({ playlistId }: AnalyzeAppProps) => {
 
 			const res = await getPlaylist(playlistId);
 
-			setTrackList(combineTrackList(res.data));
-
 			if (res.success) {
-				setData(res.data[0]);
+				setData(res.header);
+				setTrackList(res.tracks);
 			} else if (res.error) {
 				setError(res.error);
 			}
@@ -48,7 +45,7 @@ const AnalyzeApp = ({ playlistId }: AnalyzeAppProps) => {
 				<p>Make sure the given playlist ID/URL is correct.</p>
 				<Button
 					onClick={() => {
-						router.push("/export");
+						router.push("/Analyze");
 					}}
 					className="h-full font-light"
 					variant="destructive"
@@ -67,11 +64,11 @@ const AnalyzeApp = ({ playlistId }: AnalyzeAppProps) => {
 		);
 	}
 
-	const overflow = data.tracks.total > 100;
+	const overflow = trackList.length > 100;
 
 	return (
 		<div className="flex min-w-[80vw] gap-6 flex-col p-4 bg-secondary rounded-xl drop-shadow-lg">
-			<div className="flex w-full flex-row gap-4">
+			<div className="flex w-full flex-col md:flex-row gap-4">
 				<Button
 					onClick={() => {
 						window.open(data.external_urls.spotify, "_blank");
@@ -83,7 +80,7 @@ const AnalyzeApp = ({ playlistId }: AnalyzeAppProps) => {
 				</Button>
 				<Button
 					onClick={() => {
-						router.push("/analyze");
+						router.push("/Analyze");
 					}}
 					className="h-full font-light w-full"
 					variant="destructive"
@@ -105,7 +102,7 @@ const AnalyzeApp = ({ playlistId }: AnalyzeAppProps) => {
 					<h2 className="font-light">{data.description}</h2>
 				</div>
 			</div>
-			<TrackList tracklist={data.tracks.items} overflow={overflow} />
+			<TrackList tracklist={trackList} overflow={overflow} />
 			{overflow && (
 				<div className="flex flex-col text-center justify-center items-center gap-2">
 					<h1 className="text-sm">
