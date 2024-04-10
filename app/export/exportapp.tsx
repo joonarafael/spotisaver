@@ -160,11 +160,11 @@ const ExportApp = ({ playlistId }: ExportAppProps) => {
 			<div className="w-full text-left">
 				<p>{header.track_count} tracks</p>
 			</div>
-			<TrackList tracklist={trackList} overflow={overflow} />
+			<TrackList tracklist={trackList} hideTen={overflow} overflow={overflow} />
 			{overflow && (
 				<div className="flex flex-col text-center justify-center items-center gap-2">
 					<h1 className="text-sm">
-						Displaying only the first 100 songs of the playlist.
+						Displaying only the first 10 songs of the playlist.
 					</h1>
 					<Button
 						onClick={() => {
