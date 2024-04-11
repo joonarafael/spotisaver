@@ -4,6 +4,8 @@
 
 ### 2024
 
+- April/11; **0.1.6**: visual improvements + started the analyzing algorithm
+
 - April/10; **0.1.5**: simpler tracklist exporting
 
 - April/10; **0.1.4**: playlist header and tracklist processing + parsing moved to server from client

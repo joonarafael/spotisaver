@@ -1,17 +1,18 @@
 "use client";
 
-import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import { BeatLoader } from 'react-spinners';
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { FaExternalLinkSquareAlt } from "react-icons/fa";
+import { BeatLoader } from "react-spinners";
 
-import getPlaylist from '@/actions/spotify/getplaylist';
-import TrackList from '@/components/tracklist';
-import { Button } from '@/components/ui/button';
-import exportCSV from '@/lib/exportcsv';
-import exportJSON from '@/lib/exportjson';
-import exportSimplerCSV from '@/lib/simplerexportcsv';
-import exportSimplerJSON from '@/lib/simplerexportjson';
-import { Playlist, Track } from '@/types';
+import getPlaylist from "@/actions/spotify/getplaylist";
+import TrackList from "@/components/tracklist";
+import { Button } from "@/components/ui/button";
+import exportCSV from "@/lib/exportcsv";
+import exportJSON from "@/lib/exportjson";
+import exportSimplerCSV from "@/lib/simplerexportcsv";
+import exportSimplerJSON from "@/lib/simplerexportjson";
+import { Playlist, Track } from "@/types";
 
 interface ExportAppProps {
 	playlistId?: string;
@@ -115,47 +116,45 @@ const ExportApp = ({ playlistId }: ExportAppProps) => {
 					)}
 				</div>
 			</div>
-			<div className="flex flex-col gap-4 p-4 bg-background rounded-xl">
-				<div className="flex w-full flex-col md:flex-row gap-4 items-center">
-					<div className="min-w-20">JSON</div>
-					<Button
-						onClick={() => {
-							exportSimplerJSON(trackList, header.name);
-						}}
-						className="h-full font-bold w-full"
-					>
-						JSON EXPORT
-					</Button>
-					<Button
-						onClick={() => {
-							exportJSON(trackList, header.name);
-						}}
-						className="h-full font-light w-full"
-						variant="outline"
-					>
-						JSON EXPORT DETAILED
-					</Button>
-				</div>
-				<div className="flex w-full flex-col md:flex-row gap-4 items-center">
-					<div className="min-w-20">CSV</div>
-					<Button
-						onClick={() => {
-							exportSimplerCSV(trackList, header.name);
-						}}
-						className="h-full font-bold w-full"
-					>
-						CSV EXPORT
-					</Button>
-					<Button
-						onClick={() => {
-							exportCSV(trackList, header.name);
-						}}
-						className="h-full font-light w-full"
-						variant="outline"
-					>
-						CSV EXPORT DETAILED
-					</Button>
-				</div>
+			<div className="flex w-full flex-col md:flex-row gap-4 items-center">
+				<div className="min-w-20">JSON</div>
+				<Button
+					onClick={() => {
+						exportSimplerJSON(trackList, header.name);
+					}}
+					className="h-full font-bold w-full"
+				>
+					JSON EXPORT
+				</Button>
+				<Button
+					onClick={() => {
+						exportJSON(trackList, header.name);
+					}}
+					className="h-full font-light w-full"
+					variant="outline"
+				>
+					JSON EXPORT DETAILED
+				</Button>
+			</div>
+			<div className="flex w-full flex-col md:flex-row gap-4 items-center">
+				<div className="min-w-20">CSV</div>
+				<Button
+					onClick={() => {
+						exportSimplerCSV(trackList, header.name);
+					}}
+					className="h-full font-bold w-full"
+				>
+					CSV EXPORT
+				</Button>
+				<Button
+					onClick={() => {
+						exportCSV(trackList, header.name);
+					}}
+					className="h-full font-light w-full"
+					variant="outline"
+				>
+					CSV EXPORT DETAILED
+				</Button>
 			</div>
 			<div className="w-full text-left">
 				<p>{header.track_count} tracks</p>
@@ -173,10 +172,11 @@ const ExportApp = ({ playlistId }: ExportAppProps) => {
 								"_blank"
 							);
 						}}
-						className="w-min font-light text-[#1DB954]"
+						className="w-min font-light text-[#1DB954] items-center gap-2"
 						variant="outline"
 					>
-						VIEW FULL TRACKLIST IN SPOTIFY
+						<p>VIEW FULL TRACKLIST IN SPOTIFY</p>
+						<FaExternalLinkSquareAlt className="w-4 h-4" />
 					</Button>
 				</div>
 			)}

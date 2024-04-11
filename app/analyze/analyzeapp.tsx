@@ -1,15 +1,16 @@
 "use client";
 
-import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import { FaExternalLinkSquareAlt } from 'react-icons/fa';
-import { MdExitToApp } from 'react-icons/md';
-import { BeatLoader } from 'react-spinners';
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { FaExternalLinkSquareAlt } from "react-icons/fa";
+import { MdExitToApp } from "react-icons/md";
+import { BeatLoader } from "react-spinners";
 
-import getPlaylist from '@/actions/spotify/getplaylist';
-import TrackList from '@/components/tracklist';
-import { Button } from '@/components/ui/button';
-import { Playlist, Track } from '@/types';
+import getPlaylist from "@/actions/spotify/getplaylist";
+import masterAnalyzeTracklist from "@/analyze/tracklist/master";
+import TrackList from "@/components/tracklist";
+import { Button } from "@/components/ui/button";
+import { Playlist, Track } from "@/types";
 
 interface AnalyzeAppProps {
 	playlistId?: string;
@@ -20,6 +21,7 @@ const AnalyzeApp = ({ playlistId }: AnalyzeAppProps) => {
 	const [header, setHeader] = useState<Playlist | null>(null);
 	const [trackList, setTrackList] = useState<Track[]>([]);
 	const [error, setError] = useState("");
+	const [analyze, setAnalyze] = useState<any>(null);
 
 	useEffect(() => {
 		const retrieveData = async () => {
@@ -29,11 +31,12 @@ const AnalyzeApp = ({ playlistId }: AnalyzeAppProps) => {
 
 			const res = await getPlaylist(playlistId);
 
-			console.log(res);
-
 			if (res.success) {
 				setHeader(res.header);
 				setTrackList(res.tracks);
+
+				const analyzing = await masterAnalyzeTracklist(res.tracks);
+				setAnalyze(analyzing);
 			} else if (res.error) {
 				setError(res.error);
 			}
@@ -115,27 +118,26 @@ const AnalyzeApp = ({ playlistId }: AnalyzeAppProps) => {
 					)}
 				</div>
 			</div>
-			<div className="flex flex-col gap-4 p-4 bg-background rounded-xl">
-				<div className="flex w-full flex-col md:flex-row gap-4 items-center">
-					<Button
-						onClick={() => {
-							router.push(`/export?listId=${playlistId}`);
-						}}
-						variant="outline"
-						className="h-full w-full"
-					>
-						EXPORT THIS PLAYLIST
-					</Button>
-					<Button
-						onClick={() => {}}
-						className="h-full font-light w-full"
-						variant="outline"
-						disabled
-					>
-						DISABLED
-					</Button>
-				</div>
+			<div className="flex w-full flex-col md:flex-row gap-4 items-center">
+				<Button
+					onClick={() => {
+						router.push(`/export?listId=${playlistId}`);
+					}}
+					variant="outline"
+					className="h-full w-full"
+				>
+					EXPORT THIS PLAYLIST
+				</Button>
+				<Button
+					onClick={() => {}}
+					className="h-full font-light w-full"
+					variant="outline"
+					disabled
+				>
+					DISABLED
+				</Button>
 			</div>
+			{JSON.stringify(analyze)}
 			<div className="w-full text-left">
 				<p>{header.track_count} tracks</p>
 			</div>
@@ -152,10 +154,11 @@ const AnalyzeApp = ({ playlistId }: AnalyzeAppProps) => {
 								"_blank"
 							);
 						}}
-						className="w-min font-light text-[#1DB954]"
+						className="w-min font-light text-[#1DB954] gap-2 items-center"
 						variant="outline"
 					>
-						VIEW FULL TRACKLIST IN SPOTIFY
+						<p>VIEW FULL TRACKLIST IN SPOTIFY</p>
+						<FaExternalLinkSquareAlt className="w-4 h-4" />
 					</Button>
 				</div>
 			)}

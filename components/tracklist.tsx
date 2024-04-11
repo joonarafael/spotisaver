@@ -46,10 +46,10 @@ const TrackList = ({ tracklist, hideTen, overflow }: TrackListProps) => {
 				return (
 					<div key={index} className={opacity}>
 						<div
-							className={`bg-background border rounded-xl p-2 drop-shadow-md flex flex-wrap items-center gap-2 justify-between`}
+							className={`bg-background flex border rounded-xl p-2 drop-shadow-md items-center justify-between`}
 						>
-							<div className="flex flex-wrap items-center gap-4">
-								<div className="min-w-14 font-light text-sm text-center bg-secondary p-4 rounded-xl">
+							<div className="flex items-center">
+								<div className="min-w-10 font-light text-sm text-center md:visible lg:visible xl:visible 2xl:visible collapse">
 									{index + 1}
 								</div>
 								<div className="text-left">

@@ -82,3 +82,10 @@ export type Playlist = {
 	public: boolean;
 	track_count: number;
 };
+
+export type Contributor = {
+	id: string;
+	external_urls?: {
+		spotify?: string | null;
+	} | null;
+};
