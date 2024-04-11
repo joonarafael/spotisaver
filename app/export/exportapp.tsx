@@ -65,16 +65,17 @@ const ExportApp = ({ playlistId }: ExportAppProps) => {
 
 	if (!header) {
 		return (
-			<div>
+			<div className="flex flex-col gap-8 justify-center items-center">
+				<h1>FETCHING & EXPORTING YOUR PLAYLIST...</h1>
 				<BeatLoader color="silver" />
 			</div>
 		);
 	}
 
-	const overflow = trackList.length > 10;
+	const overflow = trackList.length > 100;
 
 	return (
-		<div className="flex min-w-[80vw] gap-6 flex-col p-4 bg-secondary rounded-xl drop-shadow-lg">
+		<div className="flex min-w-[80vw] gap-8 flex-col p-4 bg-primary/25 rounded-xl">
 			<div className="flex w-full flex-col md:flex-row gap-4">
 				<Button
 					onClick={() => {
@@ -89,7 +90,7 @@ const ExportApp = ({ playlistId }: ExportAppProps) => {
 				</Button>
 				<Button
 					onClick={() => {
-						router.push("/Export");
+						router.push("/export");
 					}}
 					className="h-full w-full"
 					variant="destructive"
@@ -157,13 +158,16 @@ const ExportApp = ({ playlistId }: ExportAppProps) => {
 				</Button>
 			</div>
 			<div className="w-full text-left">
-				<p>{header.track_count} tracks</p>
+				<p>
+					{overflow && "first 10 tracks out of a "}
+					{`total of ${header.track_count} tracks:`}
+				</p>
 			</div>
-			<TrackList tracklist={trackList} hideTen={overflow} overflow={overflow} />
+			<TrackList tracklist={trackList} overflow={overflow} />
 			{overflow && (
 				<div className="flex flex-col text-center justify-center items-center gap-2">
 					<h1 className="text-sm">
-						Displaying only the first 10 songs of the playlist.
+						Displaying only the first 100 songs of the playlist.
 					</h1>
 					<Button
 						onClick={() => {

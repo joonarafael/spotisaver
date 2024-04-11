@@ -4,6 +4,8 @@
 
 ### 2024
 
+- April/11; **0.1.7**: much more functionality and algorithms for the analyzing process
+
 - April/11; **0.1.6**: visual improvements + started the analyzing algorithm
 
 - April/10; **0.1.5**: simpler tracklist exporting

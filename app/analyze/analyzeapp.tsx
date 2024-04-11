@@ -4,13 +4,16 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FaExternalLinkSquareAlt } from "react-icons/fa";
 import { MdExitToApp } from "react-icons/md";
+import { RiFileDownloadFill } from "react-icons/ri";
 import { BeatLoader } from "react-spinners";
 
 import getPlaylist from "@/actions/spotify/getplaylist";
-import masterAnalyzeTracklist from "@/analyze/tracklist/master";
+import masterAnalyzeTracklist from "@/analyze/master";
 import TrackList from "@/components/tracklist";
 import { Button } from "@/components/ui/button";
+import formatDate from "@/lib/dateformatting";
 import { Playlist, Track } from "@/types";
+import { AnalyzeData } from "@/types/analyze";
 
 interface AnalyzeAppProps {
 	playlistId?: string;
@@ -21,7 +24,7 @@ const AnalyzeApp = ({ playlistId }: AnalyzeAppProps) => {
 	const [header, setHeader] = useState<Playlist | null>(null);
 	const [trackList, setTrackList] = useState<Track[]>([]);
 	const [error, setError] = useState("");
-	const [analyze, setAnalyze] = useState<any>(null);
+	const [analyze, setAnalyze] = useState<AnalyzeData | null>(null);
 
 	useEffect(() => {
 		const retrieveData = async () => {
@@ -71,10 +74,10 @@ const AnalyzeApp = ({ playlistId }: AnalyzeAppProps) => {
 		);
 	}
 
-	const overflow = trackList.length > 100;
+	const overflow = trackList.length > 10;
 
 	return (
-		<div className="flex min-w-[80vw] gap-6 flex-col p-4 bg-secondary rounded-xl drop-shadow-lg">
+		<div className="flex min-w-[80vw] gap-8 flex-col p-4 bg-primary/25 rounded-xl justify-center items-center text-lg">
 			<div className="flex w-full flex-col md:flex-row gap-4">
 				<Button
 					onClick={() => {
@@ -124,9 +127,10 @@ const AnalyzeApp = ({ playlistId }: AnalyzeAppProps) => {
 						router.push(`/export?listId=${playlistId}`);
 					}}
 					variant="outline"
-					className="h-full w-full"
+					className="h-full w-full items-center gap-2"
 				>
-					EXPORT THIS PLAYLIST
+					<RiFileDownloadFill className="w-4 h-4" />
+					<p>EXPORT THIS PLAYLIST</p>
 				</Button>
 				<Button
 					onClick={() => {}}
@@ -137,15 +141,97 @@ const AnalyzeApp = ({ playlistId }: AnalyzeAppProps) => {
 					DISABLED
 				</Button>
 			</div>
-			{JSON.stringify(analyze)}
-			<div className="w-full text-left">
-				<p>{header.track_count} tracks</p>
+			<div className="flex w-full flex-col md:flex-row gap-4 items-center text-lg bg-background rounded-xl p-2">
+				<div className="w-full">
+					<div className="flex flex-row justify-between">
+						<p className="font-light">playlist owner</p>
+						<p className="font-bold">{header.owner.display_name}</p>
+					</div>
+					<div className="flex flex-row justify-between">
+						<p className="font-light">playlist contributors</p>
+						<p className="font-bold">{analyze?.contributors.length}</p>
+					</div>
+					<div className="flex flex-row justify-between">
+						<p className="font-light">total amount of tracks</p>
+						<p className="font-bold">{header.track_count}</p>
+					</div>
+					<div className="flex flex-row justify-between">
+						<p className="font-light">total amount of artists</p>
+						<p className="font-bold">{analyze?.artists.length}</p>
+					</div>
+				</div>
+				<div className="w-full">
+					<div className="flex flex-row justify-between">
+						<p className="font-light">playlist followers</p>
+						<p className="font-bold">{header?.followers?.total}</p>
+					</div>
+					<div className="flex flex-row justify-between">
+						<p className="font-light">most additions</p>
+						<p className="font-bold">{formatDate(analyze?.added_at_most)}</p>
+					</div>
+					<div className="flex flex-row justify-between">
+						<p className="font-light">first addition</p>
+						<p className="font-bold">
+							{formatDate(analyze?.added_ats[0].added_at)}
+						</p>
+					</div>
+					<div className="flex flex-row justify-between">
+						<p className="font-light">most recent addition</p>
+						<p className="font-bold">
+							{formatDate(
+								analyze?.added_ats[analyze?.added_ats.length - 1].added_at
+							)}
+						</p>
+					</div>
+				</div>
 			</div>
-			<TrackList tracklist={trackList} overflow={overflow} />
+			<div className="flex w-full flex-col md:flex-row gap-4 items-center text-lg bg-background rounded-xl p-2">
+				<div className="w-full">
+					<div className="flex flex-row justify-between">
+						<p className="font-light">most contributions by (user id)</p>
+						<p className="font-bold">{analyze?.contributor_most}</p>
+					</div>
+					<div className="flex flex-row justify-between">
+						<p className="font-light">most popular artist</p>
+						<p className="font-bold">{analyze?.artist_most}</p>
+					</div>
+					<div className="flex flex-row justify-between">
+						<p className="font-light">explicit content</p>
+						{analyze?.contains_explicit ? (
+							<p className="font-bold">includes explicit content</p>
+						) : (
+							<p className="font-bold">does not include explicit content</p>
+						)}
+					</div>
+				</div>
+				<div className="w-full">
+					<div className="flex flex-row justify-between">
+						<p className="font-light">most tracks from year</p>
+						<p className="font-bold">{analyze?.year_most}</p>
+					</div>
+					<div className="flex flex-row justify-between">
+						<p className="font-light">oldest song</p>
+						<p className="font-bold">{analyze?.years[0].year}</p>
+					</div>
+					<div className="flex flex-row justify-between">
+						<p className="font-light">youngest song</p>
+						<p className="font-bold">
+							{analyze?.years[analyze.years.length - 1].year}
+						</p>
+					</div>
+				</div>
+			</div>
+			<div className="w-full text-left">
+				<p>
+					{overflow && "first 10 tracks out of a "}
+					{`total of ${header.track_count} tracks:`}
+				</p>
+			</div>
+			<TrackList tracklist={trackList} overflow={overflow} hideTen={overflow} />
 			{overflow && (
 				<div className="flex flex-col text-center justify-center items-center gap-2">
 					<h1 className="text-sm">
-						Displaying only the first 100 songs of the playlist.
+						Displaying only the first 10 songs of the playlist.
 					</h1>
 					<Button
 						onClick={() => {

@@ -8,11 +8,11 @@ function generateArtistList(input: any) {
 	for (let i = 0; i < input.length; i++) {
 		let artist = {
 			external_urls: {
-				spotify: input[i].external_urls.spotify,
+				spotify: input[i]?.external_urls?.spotify,
 			},
-			id: input[i].id,
-			name: input[i].name,
-			type: input[i].type,
+			id: input[i]?.id,
+			name: input[i]?.name,
+			type: input[i]?.type,
 		};
 
 		artistList.push(artist);
@@ -26,9 +26,9 @@ function generateImageList(input: any) {
 
 	for (let i = 0; i < input.length; i++) {
 		let image = {
-			height: input[i].height,
-			url: input[i].url,
-			width: input[i].width,
+			height: input[i]?.height,
+			url: input[i]?.url,
+			width: input[i]?.width,
 		};
 
 		imageList.push(image);
@@ -38,45 +38,62 @@ function generateImageList(input: any) {
 }
 
 function generateSafeTrack(input: any) {
-	const safeTrack: Track = {
-		added_at: input?.added_at,
-		added_by: {
-			external_urls: {
-				spotify: input.added_by.external_urls.spotify,
-			},
-			id: input.added_by.id,
-		},
-		track: {
-			album: {
-				album_type: input.track.album.album_type,
-				artists: generateArtistList(input.track.album.artists),
+	try {
+		const safeTrack: Track = {
+			added_at: input?.added_at,
+			added_by: {
 				external_urls: {
-					spotify: input.track.album.external_urls.spotify,
+					spotify: input?.added_by?.external_urls?.spotify,
 				},
-				id: input.track.album.id,
-				images: generateImageList(input.track.album.images),
-				name: input.track.album.name,
-				release_date: input.track.album.release_date,
-				release_date_precision: input.track.album.release_date_precision,
-				total_tracks: input.track.album.total_tracks,
-				type: input.track.album.type,
+				id: input?.added_by?.id,
 			},
-			artists: generateArtistList(input.track.artists),
-			disc_number: input.track.disc_number,
-			duration_ms: input.track.duration_ms,
-			explicit: input.track.explicit,
-			external_urls: {
-				spotify: input.track.external_urls.spotify,
+			track: {
+				album: {
+					album_type: input?.track.album?.album_type,
+					artists: generateArtistList(input?.track.album?.artists),
+					external_urls: {
+						spotify: input?.track?.album?.external_urls?.spotify,
+					},
+					id: input?.track?.album?.id,
+					images: generateImageList(input?.track?.album?.images),
+					name: input?.track?.album?.name,
+					release_date: input?.track?.album?.release_date,
+					release_date_precision: input?.track?.album?.release_date_precision,
+					total_tracks: input?.track?.album?.total_tracks,
+					type: input?.track?.album?.type,
+				},
+				artists: generateArtistList(input?.track?.artists),
+				disc_number: input?.track?.disc_number,
+				duration_ms: input?.track?.duration_ms,
+				explicit: input?.track?.explicit,
+				external_urls: {
+					spotify: input?.track?.external_urls?.spotify,
+				},
+				id: input?.track?.id,
+				name: input?.track?.name,
+				popularity: input?.track?.popularity,
+				track_number: input?.track?.track_number,
+				type: input?.track?.type,
 			},
-			id: input.track.id,
-			name: input.track.name,
-			popularity: input.track.popularity,
-			track_number: input.track.track_number,
-			type: input.track.type,
-		},
-	};
+		};
 
-	return safeTrack;
+		return safeTrack;
+	} catch (err) {
+		const safeTrack: Track = {
+			track: {
+				album: {
+					artists: [],
+					id: "N/A",
+					name: "N/A",
+				},
+				artists: [],
+				id: "N/A",
+				name: "N/A",
+			},
+		};
+
+		return safeTrack;
+	}
 }
 
 function convertToSafeTracks(input: any) {

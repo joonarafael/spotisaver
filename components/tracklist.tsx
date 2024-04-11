@@ -33,7 +33,7 @@ const TrackList = ({ tracklist, hideTen, overflow }: TrackListProps) => {
 	}
 
 	return (
-		<div className="flex flex-col gap-4 w-full">
+		<div className="flex flex-col gap-4 w-full text-base">
 			{finalArray.map((track, index) => {
 				const artistListLength = track.track?.artists?.length ?? 0;
 
@@ -65,7 +65,9 @@ const TrackList = ({ tracklist, hideTen, overflow }: TrackListProps) => {
 										}}
 										className="font-bold hover:underline cursor-pointer"
 									>
-										{track.track?.name ?? "N/A"}
+										{track.track.id === "N/A"
+											? "processing of this song failed"
+											: `${track.track.name}`}
 									</h1>
 									<div className="flex flex-wrap gap-1">
 										{track.track?.artists?.map((artist, index) => {
