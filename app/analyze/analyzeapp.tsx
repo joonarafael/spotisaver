@@ -2,6 +2,8 @@
 
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { FaExternalLinkSquareAlt } from 'react-icons/fa';
+import { MdExitToApp } from 'react-icons/md';
 import { BeatLoader } from 'react-spinners';
 
 import getPlaylist from '@/actions/spotify/getplaylist';
@@ -47,7 +49,7 @@ const AnalyzeApp = ({ playlistId }: AnalyzeAppProps) => {
 				<p>Make sure the given playlist ID/URL is correct.</p>
 				<Button
 					onClick={() => {
-						router.push("/Analyze");
+						router.push("/analyze");
 					}}
 					className="h-full font-light"
 					variant="destructive"
@@ -78,18 +80,20 @@ const AnalyzeApp = ({ playlistId }: AnalyzeAppProps) => {
 							"_blank"
 						);
 					}}
-					className="h-full font-bold w-full text-[#1DB954]"
+					className="items-center gap-2 h-full w-full text-[#1DB954]"
 				>
-					Open this playlist in Spotify
+					<p>OPEN IN SPOTIFY</p>
+					<FaExternalLinkSquareAlt className="w-4 h-4" />
 				</Button>
 				<Button
 					onClick={() => {
-						router.push("/Analyze");
+						router.push("/analyze");
 					}}
-					className="h-full w-full"
+					className="h-full w-full items-center gap-2"
 					variant="destructive"
 				>
-					Choose another playlist
+					<p>CHOOSE ANOTHER PLAYLIST</p>
+					<MdExitToApp className="w-4 h-4" />
 				</Button>
 			</div>
 			<div className="flex w-full items-end gap-4 flex-wrap">
@@ -111,6 +115,27 @@ const AnalyzeApp = ({ playlistId }: AnalyzeAppProps) => {
 					)}
 				</div>
 			</div>
+			<div className="flex flex-col gap-4 p-4 bg-background rounded-xl">
+				<div className="flex w-full flex-col md:flex-row gap-4 items-center">
+					<Button
+						onClick={() => {
+							router.push(`/export?listId=${playlistId}`);
+						}}
+						variant="outline"
+						className="h-full w-full"
+					>
+						EXPORT THIS PLAYLIST
+					</Button>
+					<Button
+						onClick={() => {}}
+						className="h-full font-light w-full"
+						variant="outline"
+						disabled
+					>
+						DISABLED
+					</Button>
+				</div>
+			</div>
 			<div className="w-full text-left">
 				<p>{header.track_count} tracks</p>
 			</div>
@@ -130,7 +155,7 @@ const AnalyzeApp = ({ playlistId }: AnalyzeAppProps) => {
 						className="w-min font-light text-[#1DB954]"
 						variant="outline"
 					>
-						Open this playlist in Spotify to view full track list!
+						VIEW FULL TRACKLIST IN SPOTIFY
 					</Button>
 				</div>
 			)}

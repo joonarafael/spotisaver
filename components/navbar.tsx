@@ -1,14 +1,14 @@
 "use client";
 
-import { useTheme } from "next-themes";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import { BsMoonStars } from "react-icons/bs";
-import { IoHome, IoInformationCircle } from "react-icons/io5";
-import { MdOutlineWbSunny } from "react-icons/md";
-import { RiFileDownloadFill } from "react-icons/ri";
+import { useTheme } from 'next-themes';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { BsMoonStars } from 'react-icons/bs';
+import { IoHome, IoInformationCircle } from 'react-icons/io5';
+import { MdOutlineWbSunny } from 'react-icons/md';
+import { RiFileDownloadFill } from 'react-icons/ri';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 
 const Navbar = () => {
 	const router = useRouter();
@@ -31,7 +31,7 @@ const Navbar = () => {
 						}}
 					>
 						<IoHome />
-						<p>Home</p>
+						<p>HOME</p>
 					</Button>
 					<Button
 						className="flex flex-row gap-2"
@@ -41,7 +41,7 @@ const Navbar = () => {
 						}}
 					>
 						<RiFileDownloadFill className="w-5 h-5" />
-						<p>Export</p>
+						<p>EXPORT</p>
 					</Button>
 					<Button
 						className="flex flex-row gap-2"
@@ -51,7 +51,7 @@ const Navbar = () => {
 						}}
 					>
 						<IoInformationCircle className="w-5 h-5" />
-						<p>About</p>
+						<p>ABOUT</p>
 					</Button>
 				</div>
 				<div>
@@ -75,7 +75,7 @@ const Navbar = () => {
 						}}
 					>
 						<IoHome />
-						<p>Home</p>
+						<p>HOME</p>
 					</Button>
 					<Button
 						className="flex flex-row gap-2"
@@ -85,7 +85,7 @@ const Navbar = () => {
 						}}
 					>
 						<RiFileDownloadFill className="w-5 h-5" />
-						<p>Export</p>
+						<p>EXPORT</p>
 					</Button>
 					<Button
 						className="flex flex-row gap-2"
@@ -95,7 +95,7 @@ const Navbar = () => {
 						}}
 					>
 						<IoInformationCircle className="w-5 h-5" />
-						<p>About</p>
+						<p>ABOUT</p>
 					</Button>
 				</div>
 				<div>
@@ -108,7 +108,7 @@ const Navbar = () => {
 							}}
 						>
 							<BsMoonStars />
-							<p>Turn Lights Off</p>
+							<p>DARK</p>
 						</Button>
 					) : (
 						<Button
@@ -119,7 +119,7 @@ const Navbar = () => {
 							}}
 						>
 							<MdOutlineWbSunny className="w-5 h-5" />
-							<p>Turn Lights On</p>
+							<p>LIGHT</p>
 						</Button>
 					)}
 				</div>

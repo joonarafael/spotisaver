@@ -1,17 +1,17 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import { BeatLoader } from "react-spinners";
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { BeatLoader } from 'react-spinners';
 
-import getPlaylist from "@/actions/spotify/getplaylist";
-import TrackList from "@/components/tracklist";
-import { Button } from "@/components/ui/button";
-import exportCSV from "@/lib/exportcsv";
-import exportJSON from "@/lib/exportjson";
-import exportSimplerCSV from "@/lib/simplerexportcsv";
-import exportSimplerJSON from "@/lib/simplerexportjson";
-import { Playlist, Track } from "@/types";
+import getPlaylist from '@/actions/spotify/getplaylist';
+import TrackList from '@/components/tracklist';
+import { Button } from '@/components/ui/button';
+import exportCSV from '@/lib/exportcsv';
+import exportJSON from '@/lib/exportjson';
+import exportSimplerCSV from '@/lib/simplerexportcsv';
+import exportSimplerJSON from '@/lib/simplerexportjson';
+import { Playlist, Track } from '@/types';
 
 interface ExportAppProps {
 	playlistId?: string;
@@ -84,7 +84,7 @@ const ExportApp = ({ playlistId }: ExportAppProps) => {
 					}}
 					className="h-full font-bold w-full text-[#1DB954]"
 				>
-					Open this playlist in Spotify
+					OPEN IN SPOTIFY
 				</Button>
 				<Button
 					onClick={() => {
@@ -93,7 +93,7 @@ const ExportApp = ({ playlistId }: ExportAppProps) => {
 					className="h-full w-full"
 					variant="destructive"
 				>
-					Choose another playlist
+					CHOOSE ANOTHER PLAYLIST
 				</Button>
 			</div>
 			<div className="flex w-full items-end gap-4 flex-wrap">
@@ -122,9 +122,9 @@ const ExportApp = ({ playlistId }: ExportAppProps) => {
 						onClick={() => {
 							exportSimplerJSON(trackList, header.name);
 						}}
-						className="h-full font-light w-full"
+						className="h-full font-bold w-full"
 					>
-						Export tracklist as JSON
+						JSON EXPORT
 					</Button>
 					<Button
 						onClick={() => {
@@ -133,7 +133,7 @@ const ExportApp = ({ playlistId }: ExportAppProps) => {
 						className="h-full font-light w-full"
 						variant="outline"
 					>
-						Export detailed tracklist as JSON
+						JSON EXPORT DETAILED
 					</Button>
 				</div>
 				<div className="flex w-full flex-col md:flex-row gap-4 items-center">
@@ -142,9 +142,9 @@ const ExportApp = ({ playlistId }: ExportAppProps) => {
 						onClick={() => {
 							exportSimplerCSV(trackList, header.name);
 						}}
-						className="h-full font-light w-full"
+						className="h-full font-bold w-full"
 					>
-						Export tracklist as CSV
+						CSV EXPORT
 					</Button>
 					<Button
 						onClick={() => {
@@ -153,7 +153,7 @@ const ExportApp = ({ playlistId }: ExportAppProps) => {
 						className="h-full font-light w-full"
 						variant="outline"
 					>
-						Export detailed tracklist as CSV
+						CSV EXPORT DETAILED
 					</Button>
 				</div>
 			</div>
@@ -176,7 +176,7 @@ const ExportApp = ({ playlistId }: ExportAppProps) => {
 						className="w-min font-light text-[#1DB954]"
 						variant="outline"
 					>
-						Open this playlist in Spotify to view full track list!
+						VIEW FULL TRACKLIST IN SPOTIFY
 					</Button>
 				</div>
 			)}

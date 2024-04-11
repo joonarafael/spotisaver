@@ -17,7 +17,7 @@ export default function exportCSV(data: Track[], name: string) {
 		link.href = url;
 		const fileName = filterFileName(name);
 
-		link.download = `${fileName}_tracklist.csv`;
+		link.download = `${fileName}_detailed_tracklist.csv`;
 		link.click();
 	} catch (err) {
 		console.log(err);

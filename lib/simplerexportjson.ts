@@ -18,7 +18,7 @@ export default async function exportSimplerJSON(input: Track[], name: string) {
 
 		const fileName = filterFileName(name);
 
-		link.download = `${fileName}_simplified_tracklist.json`;
+		link.download = `${fileName}_tracklist.json`;
 
 		link.click();
 	} catch (err) {

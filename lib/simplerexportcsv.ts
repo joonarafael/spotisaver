@@ -1,11 +1,11 @@
 "use client";
 
-import { json2csv } from "json-2-csv";
+import { json2csv } from 'json-2-csv';
 
-import { Track } from "@/types";
+import { Track } from '@/types';
 
-import convertToSimplerTrackList from "./converttosimpler";
-import filterFileName from "./filterfilename";
+import convertToSimplerTrackList from './converttosimpler';
+import filterFileName from './filterfilename';
 
 export default async function exportSimplerCSV(data: Track[], name: string) {
 	try {
@@ -20,7 +20,7 @@ export default async function exportSimplerCSV(data: Track[], name: string) {
 		link.href = url;
 		const fileName = filterFileName(name);
 
-		link.download = `${fileName}_simplified_tracklist.csv`;
+		link.download = `${fileName}_tracklist.csv`;
 		link.click();
 	} catch (err) {
 		console.log(err);
