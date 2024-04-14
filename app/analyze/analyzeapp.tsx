@@ -68,7 +68,8 @@ const AnalyzeApp = ({ playlistId }: AnalyzeAppProps) => {
 
 	if (!header) {
 		return (
-			<div>
+			<div className="flex flex-col gap-8 justify-center items-center">
+				<h1>FETCHING & ANALYZING YOUR PLAYLIST...</h1>
 				<BeatLoader color="silver" />
 			</div>
 		);
