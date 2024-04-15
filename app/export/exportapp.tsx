@@ -32,8 +32,6 @@ const ExportApp = ({ playlistId }: ExportAppProps) => {
 
 			const res = await getPlaylist(playlistId);
 
-			console.log(res);
-
 			if (res.success) {
 				setHeader(res.header);
 				setTrackList(res.tracks);
@@ -52,7 +50,7 @@ const ExportApp = ({ playlistId }: ExportAppProps) => {
 				<p>Make sure the given playlist ID/URL is correct.</p>
 				<Button
 					onClick={() => {
-						router.push("/Export");
+						router.push("/export");
 					}}
 					className="h-full font-light"
 					variant="destructive"

@@ -4,6 +4,8 @@
 
 ### 2024
 
+- April/15; **0.1.8**: ratelimiter added and first about written
+
 - April/11; **0.1.7**: much more functionality and algorithms for the analyzing process
 
 - April/11; **0.1.6**: visual improvements + started the analyzing algorithm
