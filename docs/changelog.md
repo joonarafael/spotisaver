@@ -4,6 +4,8 @@
 
 ### 2024
 
+- April/17; **0.2.0**: added unique songs and unique decades to analyzing
+
 - April/17; **0.1.9**: finetuned ratelimiter to return always the "/blocked" route + wrote first version of user manual
 
 - April/15; **0.1.8**: ratelimiter added and first about written

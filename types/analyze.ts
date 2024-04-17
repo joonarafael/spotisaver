@@ -1,6 +1,8 @@
 import { Artist, Contributor } from "./index";
 
 export type AnalyzeData = {
+	unique_tracks: number;
+	unique_decades: number;
 	contributors: ContributorRecord[];
 	contributor_most: string;
 	artists: ArtistRecord[];

@@ -94,7 +94,7 @@ const AnalyzeApp = ({ playlistId }: AnalyzeAppProps) => {
 				</Button>
 				<Button
 					onClick={() => {
-						router.push("/analyze");
+						window.open("/analyze", "_self");
 					}}
 					className="h-full w-full items-center gap-2"
 					variant="destructive"
@@ -105,20 +105,20 @@ const AnalyzeApp = ({ playlistId }: AnalyzeAppProps) => {
 			</div>
 			<div className="flex w-full items-end gap-4 flex-wrap">
 				{header.images && (
-					<img
-						className="rounded-xl"
-						width="256"
-						height="256"
-						src={header?.images[0]?.url}
-						alt="playlist image"
-					/>
+					<div className="rounded-xl bg-no-repeat w-[256px] h-[256px] overflow-hidden">
+						<img
+							width="256"
+							height="256"
+							src={header?.images[0]?.url}
+							alt="playlist image"
+						/>
+					</div>
 				)}
-
 				<div className="text-left flex flex-col gap-4">
 					<h3 className="font-light text-2xl">{header.owner.display_name}</h3>
 					<h1 className="text-7xl font-bold">{header.name}</h1>
 					{header.description && (
-						<h2 className="font-light">{`'${header.description}'`}</h2>
+						<h2 className="font-light">{header.description}</h2>
 					)}
 				</div>
 			</div>
@@ -140,7 +140,7 @@ const AnalyzeApp = ({ playlistId }: AnalyzeAppProps) => {
 					disabled
 				></Button>
 			</div>
-			<div className="flex w-full flex-col md:flex-row gap-4 items-center text-lg bg-background rounded-xl p-2">
+			<div className="flex w-full flex-col lg:flex-row gap-4 text-lg bg-background rounded-xl p-2">
 				<div className="w-full">
 					<div className="flex flex-row justify-between">
 						<p className="font-light">playlist owner</p>
@@ -153,6 +153,10 @@ const AnalyzeApp = ({ playlistId }: AnalyzeAppProps) => {
 					<div className="flex flex-row justify-between">
 						<p className="font-light">total amount of tracks</p>
 						<p className="font-bold">{header.track_count}</p>
+					</div>
+					<div className="flex flex-row justify-between">
+						<p className="font-light">unique tracks</p>
+						<p className="font-bold">{analyze?.unique_tracks}</p>
 					</div>
 					<div className="flex flex-row justify-between">
 						<p className="font-light">total amount of artists</p>
@@ -184,7 +188,7 @@ const AnalyzeApp = ({ playlistId }: AnalyzeAppProps) => {
 					</div>
 				</div>
 			</div>
-			<div className="flex w-full flex-col md:flex-row gap-4 items-center text-lg bg-background rounded-xl p-2">
+			<div className="flex w-full flex-col lg:flex-row gap-4 text-lg bg-background rounded-xl p-2">
 				<div className="w-full">
 					<div className="flex flex-row justify-between">
 						<p className="font-light">most contributions by (user id)</p>
@@ -197,9 +201,9 @@ const AnalyzeApp = ({ playlistId }: AnalyzeAppProps) => {
 					<div className="flex flex-row justify-between">
 						<p className="font-light">explicit content</p>
 						{analyze?.contains_explicit ? (
-							<p className="font-bold">includes explicit content</p>
+							<p className="font-bold text-rose-500">YES</p>
 						) : (
-							<p className="font-bold">does not include explicit content</p>
+							<p className="font-bold">none</p>
 						)}
 					</div>
 				</div>
@@ -207,6 +211,10 @@ const AnalyzeApp = ({ playlistId }: AnalyzeAppProps) => {
 					<div className="flex flex-row justify-between">
 						<p className="font-light">most tracks from year</p>
 						<p className="font-bold">{analyze?.year_most}</p>
+					</div>
+					<div className="flex flex-row justify-between">
+						<p className="font-light">unique decades</p>
+						<p className="font-bold">{analyze?.unique_decades}</p>
 					</div>
 					<div className="flex flex-row justify-between">
 						<p className="font-light">oldest song</p>

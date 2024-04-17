@@ -1,3 +1,5 @@
+import { unique } from "next/dist/build/utils";
+
 import { Track } from "@/types";
 import {
 	AddedAtRecord,
@@ -26,7 +28,12 @@ export default async function masterAnalyzeTracklist(trackList: Track[]) {
 	let years: YearRecord[] = [];
 	let seenYears: string[] = [];
 
+	const uniqueTracks = new Set();
+	const uniqueDecades = new Set();
+
 	for (const track of trackList) {
+		uniqueTracks.add(track.track.id);
+
 		const contributor = getContributor(track);
 
 		const seenContributorIndex = seenContributors.indexOf(contributor.id);
@@ -92,6 +99,8 @@ export default async function masterAnalyzeTracklist(trackList: Track[]) {
 
 		const year = getYear(track);
 
+		uniqueDecades.add(year.slice(0, 3));
+
 		const seenYearIndex = seenYears.indexOf(year);
 
 		if (seenYearIndex === -1) {
@@ -129,6 +138,8 @@ export default async function masterAnalyzeTracklist(trackList: Track[]) {
 	years.sort((a, b) => new Date(a.year).getTime() - new Date(b.year).getTime());
 
 	return {
+		unique_tracks: uniqueTracks.size,
+		unique_decades: uniqueDecades.size,
 		contributors: contributors,
 		contributor_most: contributors[0].contirubutor.id,
 		artists: artists,
