@@ -2,7 +2,9 @@
 
 This is a _Next.js_ web application to fetch, parse, and analyze Spotify playlists. Application also provides functionality to export and download these playlists as either .json files or .csv files.
 
-Application is constantly up and running [here](https://spotisaver.vercel.app/ "Spotisaver Web Application") hosted by [Vercel](https://vercel.com/ "Vercel - The Frontend Cloud")
+Application is constantly up and running [here](https://spotisaver.vercel.app/ "Spotisaver Web Application") hosted by [Vercel](https://vercel.com/ "Vercel - The Frontend Cloud").
+
+Favicon by [Freepik](https://www.freepik.com/ "Freepik - Create great designs, faster").
 
 ## Technical Details
 

@@ -13,14 +13,21 @@ export default async function middleware(request: NextRequest) {
 		return NextResponse.next();
 	}
 
-	const ip = request.ip ?? "127.0.0.1";
-	const { success, pending, limit, reset, remaining } = await ratelimit.limit(
-		ip
-	);
+	if (
+		request.url.includes("/analyze?listId=") ||
+		request.url.includes("/export?listId=")
+	) {
+		const ip = request.ip ?? "127.0.0.1";
+		const { success, pending, limit, reset, remaining } = await ratelimit.limit(
+			ip
+		);
 
-	return success
-		? NextResponse.next()
-		: NextResponse.redirect(new URL("/blocked", request.url));
+		return success
+			? NextResponse.next()
+			: NextResponse.redirect(new URL("/blocked", request.url));
+	}
+
+	return NextResponse.next();
 }
 
 export const config = {
