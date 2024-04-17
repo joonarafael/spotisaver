@@ -17,7 +17,6 @@ function generateSimplerTrack(input: Track) {
 		album: input.track.album.name,
 		release_date: input.track.album.release_date,
 		artists: generateArtistList(input.track.artists),
-		id: input.track.id,
 		name: input.track.name,
 	};
 

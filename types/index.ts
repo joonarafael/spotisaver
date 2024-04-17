@@ -55,7 +55,6 @@ export type SimplerTrack = {
 	album?: Date | string | null;
 	release_date?: Date | string | null;
 	artists: string[] | null;
-	id: string;
 	name: string;
 };
 

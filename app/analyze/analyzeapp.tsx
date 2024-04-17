@@ -136,11 +136,9 @@ const AnalyzeApp = ({ playlistId }: AnalyzeAppProps) => {
 				<Button
 					onClick={() => {}}
 					className="h-full font-light w-full"
-					variant="outline"
+					variant="ghost"
 					disabled
-				>
-					DISABLED
-				</Button>
+				></Button>
 			</div>
 			<div className="flex w-full flex-col md:flex-row gap-4 items-center text-lg bg-background rounded-xl p-2">
 				<div className="w-full">

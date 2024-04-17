@@ -13,7 +13,7 @@ const AboutPage = () => {
 				</div>
 				<div className="flex flex-col gap-6 w-fuĺl max-w-[800px] bg-secondary p-4 rounded-xl">
 					<div className="text-neutral-500 font-light">
-						updated April 15th 2024
+						updated April 17th 2024
 					</div>
 					<div className="flex flex-wrap justify-between w-full gap-2 border-y-2 border-foreground/25 py-2">
 						<p
@@ -63,9 +63,9 @@ const AboutPage = () => {
 						</p>
 						<p>
 							Originally I got the idea for the playlist exporting as I realized
-							there was no way to export a playlist from Spotify. I wanted to
-							have a backup of my playlists in case something would happen to my
-							account.
+							there was no way to export a playlist from Spotify.
+							<br /> I wanted to have a backup of my playlists in case something
+							would happen to my account.
 						</p>
 						<p>
 							{`Analyzing the playlists was a natural addition to the project. The

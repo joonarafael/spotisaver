@@ -1,6 +1,6 @@
 {
 	"name": "spotisaver",
-	"version": "beta-0.1.8",
+	"version": "beta-0.1.9",
 	"private": true,
 	"scripts": {
 		"dev": "next dev",

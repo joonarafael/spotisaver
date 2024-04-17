@@ -4,6 +4,8 @@
 
 ### 2024
 
+- April/17; **0.1.9**: finetuned ratelimiter to return always the "/blocked" route + wrote first version of user manual
+
 - April/15; **0.1.8**: ratelimiter added and first about written
 
 - April/11; **0.1.7**: much more functionality and algorithms for the analyzing process

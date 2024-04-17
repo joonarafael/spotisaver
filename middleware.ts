@@ -9,6 +9,10 @@ const ratelimit = new Ratelimit({
 });
 
 export default async function middleware(request: NextRequest) {
+	if (request.url.endsWith("/blocked")) {
+		return NextResponse.next();
+	}
+
 	const ip = request.ip ?? "127.0.0.1";
 	const { success, pending, limit, reset, remaining } = await ratelimit.limit(
 		ip

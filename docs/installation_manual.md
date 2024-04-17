@@ -80,9 +80,30 @@ if you decided to go with NPM. Always replace `yarn` with `npm` if you're using 
 
 Both NPM and Yarn will give you detailed error messages if the installation of associated dependencies fails. In this case, please follow closely the instructions given within the error notices.
 
+## Setting up the environment
+
+If you wish to actually retrieve any information from _Spotify_, you'll gonna have to get your _API credentials_ and add them to your `.env` file.
+
+The server logic is searching for these two environment variables:
+
+```
+SPOTIFY_API_CLIENT_ID = "your_spotify_api_client_id"
+SPOTIFY_API_CLIENT_SECRET = "your_spotify_api_client_secret"
+```
+
+**The application will run into runtime errors if these are not specified**.
+
+## Middleware
+
+As my application is live and constantly up and running, I created a very rudimentary _middleware_ for my application to implement basic _rate limiting functionality_. **If you don't need middleware, simply remove the file or rename it to something else**. The _Next.js_ routing won't detect your middleware if it's not named `middleware.ts`.
+
+If you do want to use the provided middleware configuration, please add additional environment variables. I used _Vercel KV_ for this, you may want to start by reading [this article](https://vercel.com/guides/rate-limiting-edge-middleware-vercel-kv "Add Rate Limiting with Vercel Edge Middleware and Vercel KV").
+
+**The application will run into runtime errors if you leave middleware file as is, and do not specify the environment**.
+
 ## Running the application
 
-After all dependencies have been successfully installed, the application can be started with
+After all dependencies have been successfully installed, and your environment is set up, the application can be started with
 
 ```
 yarn run dev
