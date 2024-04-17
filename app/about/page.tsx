@@ -1,7 +1,7 @@
 "use client";
 
-import Container from '@/components/container';
-import Title from '@/components/title';
+import Container from "@/components/container";
+import Title from "@/components/title";
 
 const AboutPage = () => {
 	return (
@@ -12,10 +12,10 @@ const AboutPage = () => {
 					<h1 className="text-2xl">{`ABOUT`}</h1>
 				</div>
 				<div className="flex flex-col gap-6 w-full max-w-[800px] bg-background text-foreground p-4 rounded-xl drop-shadow-xl">
-					<div className="text-neutral-500 font-light">
+					<div className="text-foreground/50 font-light">
 						updated April 17th 2024
 					</div>
-					<div className="flex text-neutral-600 flex-wrap justify-between w-full gap-2 border-y border-foreground/25 py-2">
+					<div className="flex text-foreground/50 flex-wrap justify-between w-full gap-2 border-y border-foreground/25 py-2">
 						<p
 							className="hover:underline cursor-pointer"
 							onClick={() => {
@@ -73,7 +73,7 @@ const AboutPage = () => {
 							I'll expand this feature set.`}
 						</p>
 					</div>
-					<div className="flex text-neutral-600 justify-center text-center w-full border-t border-foreground/25 pt-2">
+					<div className="flex text-foreground/50 justify-center text-center w-full border-t border-foreground/25 pt-2">
 						<p
 							className="hover:underline cursor-pointer"
 							onClick={() => {

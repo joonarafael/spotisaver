@@ -4,6 +4,8 @@
 
 ### 2024
 
+- April/17; **0.2.3**: tweaked neutral colors, optimized css for content hiding with smaller screens
+
 - April/17; **0.2.2**: customized the "too many requests" screen and added credits for favicon
 
 - April/17; **0.2.1**: numerous visual improvements to UI & added analyze legend

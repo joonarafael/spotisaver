@@ -49,7 +49,7 @@ const TrackList = ({ trackList, hideTen, overflow }: TrackListProps) => {
 							className={`bg-background flex border rounded-xl p-2 drop-shadow-sm items-center justify-between`}
 						>
 							<div className="flex items-center">
-								<div className="min-w-10 font-light text-sm text-center md:visible lg:visible xl:visible 2xl:visible collapse">
+								<div className="min-w-10 font-light text-sm text-center md:block hidden">
 									{index + 1}
 								</div>
 								<div className="text-left">
@@ -113,7 +113,7 @@ const TrackList = ({ trackList, hideTen, overflow }: TrackListProps) => {
 									</div>
 								</div>
 							</div>
-							<div className="text-right md:visible lg:visible xl:visible 2xl:visible collapse">
+							<div className="text-right md:block hidden">
 								<h1
 									onClick={() => {
 										if (track.track?.album?.external_urls) {
