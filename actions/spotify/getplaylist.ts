@@ -1,9 +1,9 @@
 "use server";
 
-import retrieveID from "../retrieveid";
-import combineTrackList from "./combinetracklist";
-import getToken from "./gettoken";
-import generateSafePlaylist from "./prepareplaylistdata";
+import retrieveID from '../retrieveid';
+import combineTrackList from './combinetracklist';
+import getToken from './gettoken';
+import generateSafePlaylist from './prepareplaylistdata';
 
 export default async function getPlaylist(input: string) {
 	if (!input || typeof input !== "string") {

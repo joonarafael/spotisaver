@@ -1,19 +1,20 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import { FaExternalLinkSquareAlt } from "react-icons/fa";
-import { MdExitToApp } from "react-icons/md";
-import { RiFileDownloadFill } from "react-icons/ri";
-import { BeatLoader } from "react-spinners";
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { BsInfoCircleFill } from 'react-icons/bs';
+import { FaExternalLinkSquareAlt } from 'react-icons/fa';
+import { MdExitToApp } from 'react-icons/md';
+import { RiFileDownloadFill } from 'react-icons/ri';
+import { BeatLoader } from 'react-spinners';
 
-import getPlaylist from "@/actions/spotify/getplaylist";
-import masterAnalyzeTracklist from "@/analyze/master";
-import TrackList from "@/components/tracklist";
-import { Button } from "@/components/ui/button";
-import formatDate from "@/lib/dateformatting";
-import { Playlist, Track } from "@/types";
-import { AnalyzeData } from "@/types/analyze";
+import getPlaylist from '@/actions/spotify/getplaylist';
+import masterAnalyzeTracklist from '@/analyze/master';
+import TrackList from '@/components/tracklist';
+import { Button } from '@/components/ui/button';
+import formatDate from '@/lib/dateformatting';
+import { Playlist, Track } from '@/types';
+import { AnalyzeData } from '@/types/analyze';
 
 interface AnalyzeAppProps {
 	playlistId?: string;
@@ -34,13 +35,13 @@ const AnalyzeApp = ({ playlistId }: AnalyzeAppProps) => {
 
 			const res = await getPlaylist(playlistId);
 
-			if (res.success) {
+			if (res?.success) {
 				setHeader(res.header);
 				setTrackList(res.tracks);
 
 				const analyzing = await masterAnalyzeTracklist(res.tracks);
 				setAnalyze(analyzing);
-			} else if (res.error) {
+			} else if (res?.error) {
 				setError(res.error);
 			}
 		};
@@ -50,17 +51,20 @@ const AnalyzeApp = ({ playlistId }: AnalyzeAppProps) => {
 
 	if (error.length > 0) {
 		return (
-			<div className="bg-background rounded-xl drop-shadow-lg p-4 flex flex-col gap-4">
+			<div className="bg-foreground rounded-xl drop-shadow-lg p-4 flex flex-col gap-4">
 				<h1 className="text-rose-500 font-bold text-2xl">{error}</h1>
-				<p>Make sure the given playlist ID/URL is correct.</p>
+				<p className="text-background">
+					Make sure the given playlist ID/URL is correct.
+				</p>
 				<Button
 					onClick={() => {
 						router.push("/analyze");
 					}}
-					className="h-full font-light"
+					className="h-full font-light items-center gap-2"
 					variant="destructive"
 				>
-					Choose another playlist
+					<p>CHOOSE ANOTHER PLAYLIST</p>
+					<MdExitToApp className="w-4 h-4" />
 				</Button>
 			</div>
 		);
@@ -78,7 +82,7 @@ const AnalyzeApp = ({ playlistId }: AnalyzeAppProps) => {
 	const overflow = trackList.length > 10;
 
 	return (
-		<div className="flex min-w-[80vw] gap-8 flex-col p-4 bg-primary/25 rounded-xl justify-center items-center text-lg">
+		<div className="flex min-w-[80vw] bg-background gap-8 flex-col p-4 rounded-xl justify-center items-center text-lg">
 			<div className="flex w-full flex-col md:flex-row gap-4">
 				<Button
 					onClick={() => {
@@ -107,8 +111,7 @@ const AnalyzeApp = ({ playlistId }: AnalyzeAppProps) => {
 				{header.images && (
 					<div className="rounded-xl bg-no-repeat w-[256px] h-[256px] overflow-hidden">
 						<img
-							width="256"
-							height="256"
+							className="w-full h-full object-cover"
 							src={header?.images[0]?.url}
 							alt="playlist image"
 						/>
@@ -134,13 +137,17 @@ const AnalyzeApp = ({ playlistId }: AnalyzeAppProps) => {
 					<p>EXPORT THIS PLAYLIST</p>
 				</Button>
 				<Button
-					onClick={() => {}}
-					className="h-full font-light w-full"
-					variant="ghost"
-					disabled
-				></Button>
+					onClick={() => {
+						window.open(`/analyze/legend`, "_blank");
+					}}
+					variant="secondary"
+					className="h-full w-full items-center gap-2"
+				>
+					<BsInfoCircleFill className="w-4 h-4" />
+					<p>WHAT DO THESE THINGS MEAN?</p>
+				</Button>
 			</div>
-			<div className="flex w-full flex-col lg:flex-row gap-4 text-lg bg-background rounded-xl p-2">
+			<div className="flex w-full flex-col lg:flex-row gap-4 text-lg pt-6 p-2 border-t border-[#1DB954]/50">
 				<div className="w-full">
 					<div className="flex flex-row justify-between">
 						<p className="font-light">playlist owner</p>
@@ -188,7 +195,7 @@ const AnalyzeApp = ({ playlistId }: AnalyzeAppProps) => {
 					</div>
 				</div>
 			</div>
-			<div className="flex w-full flex-col lg:flex-row gap-4 text-lg bg-background rounded-xl p-2">
+			<div className="flex w-full flex-col lg:flex-row gap-4 text-lg py-6 p-2 border-y border-[#1DB954]/50">
 				<div className="w-full">
 					<div className="flex flex-row justify-between">
 						<p className="font-light">most contributions by (user id)</p>
@@ -229,12 +236,12 @@ const AnalyzeApp = ({ playlistId }: AnalyzeAppProps) => {
 				</div>
 			</div>
 			<div className="w-full text-left">
-				<p>
+				<p className="text-base">
 					{overflow && "first 10 tracks out of a "}
 					{`total of ${header.track_count} tracks:`}
 				</p>
 			</div>
-			<TrackList tracklist={trackList} overflow={overflow} hideTen={overflow} />
+			<TrackList trackList={trackList} overflow={overflow} hideTen={overflow} />
 			{overflow && (
 				<div className="flex flex-col text-center justify-center items-center gap-2">
 					<h1 className="text-sm">
@@ -250,7 +257,7 @@ const AnalyzeApp = ({ playlistId }: AnalyzeAppProps) => {
 						className="w-min font-light text-[#1DB954] gap-2 items-center"
 						variant="outline"
 					>
-						<p>VIEW FULL TRACKLIST IN SPOTIFY</p>
+						<p>VIEW FULL TRACK LIST IN SPOTIFY</p>
 						<FaExternalLinkSquareAlt className="w-4 h-4" />
 					</Button>
 				</div>

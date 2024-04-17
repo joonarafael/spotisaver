@@ -66,7 +66,9 @@ const PlaylistForm = ({ btnText, redirectUrl }: PlaylistFormProps) => {
 						name="term"
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>Playlist URL or ID:</FormLabel>
+								<FormLabel className="text-background">
+									Playlist URL or ID:
+								</FormLabel>
 								<FormControl>
 									<Input
 										{...field}
@@ -82,6 +84,7 @@ const PlaylistForm = ({ btnText, redirectUrl }: PlaylistFormProps) => {
 				{error && <FormError message={error} />}
 				<Button
 					type="submit"
+					variant="secondary"
 					className="w-full flex gap-2 items-center"
 					disabled={isPending}
 				>

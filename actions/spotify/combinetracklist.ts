@@ -109,11 +109,11 @@ function convertToSafeTracks(input: any) {
 }
 
 export default async function combineTrackList(data: any) {
-	let tracklist: Track[] = [];
+	let trackList: Track[] = [];
 
 	const firstChunk = convertToSafeTracks(data[0].tracks.items);
 
-	tracklist = [...firstChunk];
+	trackList = [...firstChunk];
 
 	let x = 1;
 
@@ -122,10 +122,10 @@ export default async function combineTrackList(data: any) {
 
 		const convertedChunk = convertToSafeTracks(chunk.items);
 
-		tracklist.push(...convertedChunk);
+		trackList.push(...convertedChunk);
 
 		x += 1;
 	}
 
-	return tracklist;
+	return trackList;
 }

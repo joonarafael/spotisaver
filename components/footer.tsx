@@ -1,12 +1,12 @@
 "use client";
 
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 
 const Footer = () => {
 	const router = useRouter();
 
 	return (
-		<div className="flex flex-col w-full text-center items-center justify-center my-12">
+		<div className="flex flex-col w-full text-center items-center justify-center py-12">
 			<h1
 				className="hover:underline cursor-pointer font-bold"
 				onClick={() => {

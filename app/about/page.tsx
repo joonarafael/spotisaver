@@ -11,11 +11,11 @@ const AboutPage = () => {
 				<div>
 					<h1 className="text-2xl">{`ABOUT`}</h1>
 				</div>
-				<div className="flex flex-col gap-6 w-fuĺl max-w-[800px] bg-secondary p-4 rounded-xl">
+				<div className="flex flex-col gap-6 w-full max-w-[800px] bg-background text-foreground p-4 rounded-xl drop-shadow-xl">
 					<div className="text-neutral-500 font-light">
 						updated April 17th 2024
 					</div>
-					<div className="flex flex-wrap justify-between w-full gap-2 border-y-2 border-foreground/25 py-2">
+					<div className="flex flex-wrap justify-between w-full gap-2 border-y border-foreground/25 py-2">
 						<p
 							className="hover:underline cursor-pointer"
 							onClick={() => {

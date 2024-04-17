@@ -1,14 +1,14 @@
 "use client";
 
-import { useTheme } from 'next-themes';
-import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import { BsMoonStars } from 'react-icons/bs';
-import { IoHome, IoInformationCircle } from 'react-icons/io5';
-import { MdOutlineWbSunny } from 'react-icons/md';
-import { RiFileDownloadFill } from 'react-icons/ri';
+import { useTheme } from "next-themes";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { BsMoonStars } from "react-icons/bs";
+import { IoHome, IoInformationCircle } from "react-icons/io5";
+import { MdOutlineWbSunny } from "react-icons/md";
+import { RiFileDownloadFill } from "react-icons/ri";
 
-import { Button } from '@/components/ui/button';
+import { Button } from "@/components/ui/button";
 
 const Navbar = () => {
 	const router = useRouter();
@@ -65,7 +65,7 @@ const Navbar = () => {
 
 	return (
 		<div className="border-b-2 drop-shadow-sm w-full">
-			<div className="flex justify-between gap-4 m-4">
+			<div className="flex justify-between gap-4 p-4">
 				<div className="flex flex-wrap gap-4">
 					<Button
 						className="flex flex-row gap-2"

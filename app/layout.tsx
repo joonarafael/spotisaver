@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import "./globals.css";
+import './globals.css';
 
-import { Inter_Tight } from "next/font/google";
+import { Inter_Tight } from 'next/font/google';
 
-import Footer from "@/components/footer";
-import Navbar from "@/components/navbar";
-import { ThemeProvider } from "@/components/theme";
+import Footer from '@/components/footer';
+import Navbar from '@/components/navbar';
+import { ThemeProvider } from '@/components/theme';
 
 const font = Inter_Tight({ subsets: ["latin"] });
 
@@ -22,10 +22,10 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className={font.className}>
-				<main className="bg-background">
+				<main className="min-h-screen w-full bg-gradient-to-t from-[#1DB954]/25 to-background">
 					<ThemeProvider
 						attribute="class"
-						defaultTheme="system"
+						defaultTheme="light"
 						enableSystem
 						disableTransitionOnChange
 					>

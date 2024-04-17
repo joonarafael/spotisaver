@@ -1,8 +1,8 @@
 "use client";
 
-import { Track } from '@/types';
+import { Track } from "@/types";
 
-import filterFileName from './filterfilename';
+import filterFileName from "./filterfilename";
 
 export default function exportJSON(input: Track[], name: string) {
 	try {
@@ -15,7 +15,7 @@ export default function exportJSON(input: Track[], name: string) {
 
 		const fileName = filterFileName(name);
 
-		link.download = `${fileName}_detailed_tracklist.json`;
+		link.download = `${fileName}_detailed_trackList.json`;
 
 		link.click();
 	} catch (err) {

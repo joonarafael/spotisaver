@@ -14,6 +14,8 @@ _Home page_ is the landing page of the website. By giving a valid _Spotify playl
 
 The _Analyze page_ will provide you with numerous interesting details about your playlist. You may see, of course, all the basic information, like playlist owner and total number of followers, but additionally also information about the most popular artist, oldest and youngest song, etc. will be displayed here. The first 10 tracks of the playlist will be also visible. Read more about the [track list](./user_manual.md#track-list).
 
+Make sure to read the _Analyze Legend_ located [here](https://spotisaver.vercel.app/analyze/legend "Analyze Legend") for a detailed explanation for every single analyzed feature.
+
 ### EXPORT
 
 The _Export page_ will parse the complete track list of a given playlist, and prepare it for you in two different file formats; JSON and CSV. You may additionally choose between a more simplified and concise version, or a highly detailed version.

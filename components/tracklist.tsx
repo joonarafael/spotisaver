@@ -3,7 +3,7 @@
 import { Track } from "@/types";
 
 interface TrackListProps {
-	tracklist: Track[];
+	trackList: Track[];
 	hideTen?: boolean | null;
 	overflow: boolean;
 }
@@ -21,8 +21,8 @@ const OPACITY_TABLE = [
 	"opacity-100",
 ];
 
-const TrackList = ({ tracklist, hideTen, overflow }: TrackListProps) => {
-	let finalArray: Track[] = tracklist;
+const TrackList = ({ trackList, hideTen, overflow }: TrackListProps) => {
+	let finalArray: Track[] = trackList;
 
 	if (finalArray.length > 100) {
 		finalArray = finalArray.slice(0, 100);
@@ -46,7 +46,7 @@ const TrackList = ({ tracklist, hideTen, overflow }: TrackListProps) => {
 				return (
 					<div key={index} className={opacity}>
 						<div
-							className={`bg-background flex border rounded-xl p-2 drop-shadow-md items-center justify-between`}
+							className={`bg-background flex border rounded-xl p-2 drop-shadow-sm items-center justify-between`}
 						>
 							<div className="flex items-center">
 								<div className="min-w-10 font-light text-sm text-center md:visible lg:visible xl:visible 2xl:visible collapse">

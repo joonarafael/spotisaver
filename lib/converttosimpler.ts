@@ -24,7 +24,7 @@ function generateSimplerTrack(input: Track) {
 }
 
 export default async function convertToSimplerTrackList(data: Track[]) {
-	let tracklist: SimplerTrack[] = [];
+	let trackList: SimplerTrack[] = [];
 
 	let x = 0;
 
@@ -33,10 +33,10 @@ export default async function convertToSimplerTrackList(data: Track[]) {
 
 		const convertedTrack = generateSimplerTrack(fullTrack);
 
-		tracklist.push(convertedTrack);
+		trackList.push(convertedTrack);
 
 		x += 1;
 	}
 
-	return tracklist;
+	return trackList;
 }
