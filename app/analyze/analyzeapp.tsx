@@ -1,20 +1,20 @@
 "use client";
 
-import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import { BsInfoCircleFill } from 'react-icons/bs';
-import { FaExternalLinkSquareAlt } from 'react-icons/fa';
-import { MdExitToApp } from 'react-icons/md';
-import { RiFileDownloadFill } from 'react-icons/ri';
-import { BeatLoader } from 'react-spinners';
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { BsInfoCircleFill } from "react-icons/bs";
+import { FaExternalLinkSquareAlt } from "react-icons/fa";
+import { MdExitToApp } from "react-icons/md";
+import { RiFileDownloadFill } from "react-icons/ri";
+import { BeatLoader } from "react-spinners";
 
-import getPlaylist from '@/actions/spotify/getplaylist';
-import masterAnalyzeTracklist from '@/analyze/master';
-import TrackList from '@/components/tracklist';
-import { Button } from '@/components/ui/button';
-import formatDate from '@/lib/dateformatting';
-import { Playlist, Track } from '@/types';
-import { AnalyzeData } from '@/types/analyze';
+import getPlaylist from "@/actions/spotify/getplaylist";
+import masterAnalyzeTracklist from "@/analyze/master";
+import TrackList from "@/components/tracklist";
+import { Button } from "@/components/ui/button";
+import formatDate from "@/lib/dateformatting";
+import { Playlist, Track } from "@/types";
+import { AnalyzeData } from "@/types/analyze";
 
 interface AnalyzeAppProps {
 	playlistId?: string;
@@ -82,7 +82,7 @@ const AnalyzeApp = ({ playlistId }: AnalyzeAppProps) => {
 	const overflow = trackList.length > 10;
 
 	return (
-		<div className="flex min-w-[80vw] bg-background gap-8 flex-col p-4 rounded-xl justify-center items-center text-lg">
+		<div className="flex w-full bg-background gap-8 flex-col p-4 rounded-xl justify-center items-center text-lg">
 			<div className="flex w-full flex-col md:flex-row gap-4">
 				<Button
 					onClick={() => {

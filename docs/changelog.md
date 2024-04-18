@@ -1,8 +1,10 @@
 # CHANGELOG
 
-## Beta
+## 2024
 
-### 2024
+- April/18; **0.2.4**: fixed maximum container width, adjusted background color
+
+### Beta
 
 - April/17; **0.2.3**: tweaked neutral colors, optimized css for content hiding with smaller screens
 

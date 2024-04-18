@@ -77,7 +77,7 @@ const ExportApp = ({ playlistId }: ExportAppProps) => {
 	const overflow = trackList.length > 100;
 
 	return (
-		<div className="flex min-w-[80vw] gap-8 flex-col p-4 rounded-xl bg-background">
+		<div className="flex w-full gap-8 flex-col p-4 rounded-xl bg-background">
 			<div className="flex w-full flex-col md:flex-row gap-4">
 				<Button
 					onClick={() => {
