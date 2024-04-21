@@ -1,9 +1,9 @@
 "use client";
 
-import Container from "@/components/container";
-import PlaylistForm from "@/components/playlistform";
-import Title from "@/components/title";
-import { Button } from "@/components/ui/button";
+import Container from '@/components/container';
+import PlaylistForm from '@/components/playlistform';
+import Title from '@/components/title';
+import { Button } from '@/components/ui/button';
 
 const HomePage = () => {
 	return (
@@ -22,7 +22,7 @@ const HomePage = () => {
 								onClick={() => {
 									window.open("/analyze/legend", "_self");
 								}}
-								variant="ghost"
+								variant="link"
 								size="sm"
 								className="w-full text-background"
 							>
