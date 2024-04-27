@@ -13,7 +13,7 @@ const AboutPage = () => {
 				</div>
 				<div className="flex flex-col gap-6 w-full max-w-[800px] bg-background text-foreground p-4 rounded-xl drop-shadow-xl">
 					<div className="text-foreground/50 font-light">
-						updated April 21st 2024
+						updated April 27th 2024
 					</div>
 					<div className="sm:flex-row flex-col flex text-foreground/50 justify-between w-full gap-2 border-y border-foreground/25 py-2">
 						<p

@@ -1,23 +1,27 @@
 "use client";
 
-import { useRouter } from 'next/navigation';
-import { useEffect, useState, useTransition } from 'react';
-import { useForm } from 'react-hook-form';
-import { FaArrowCircleRight } from 'react-icons/fa';
-import * as z from 'zod';
+import { useRouter } from "next/navigation";
+import { useState, useTransition } from "react";
+import { useForm } from "react-hook-form";
+import { FaArrowCircleRight } from "react-icons/fa";
+import * as z from "zod";
 
-import retrieveID from '@/actions/retrieveid';
-import { Button } from '@/components/ui/button';
+import retrieveID from "@/actions/retrieveid";
+import { Button } from "@/components/ui/button";
 import {
-    Form, FormControl, FormField, FormItem, FormLabel, FormMessage
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { EXAMPLE_PLAYLIST } from '@/constants/examplelist';
-import { delay } from '@/lib/delay';
-import { PlaylistSchema } from '@/schemas';
-import { zodResolver } from '@hookform/resolvers/zod';
+	Form,
+	FormControl,
+	FormField,
+	FormItem,
+	FormLabel,
+	FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { EXAMPLE_PLAYLIST } from "@/constants/examplelist";
+import { PlaylistSchema } from "@/schemas";
+import { zodResolver } from "@hookform/resolvers/zod";
 
-import FormError from './formerror';
+import FormError from "./formerror";
 
 interface PlaylistFormProps {
 	btnText: string;
@@ -53,8 +57,6 @@ const PlaylistForm = ({ btnText, redirectUrl }: PlaylistFormProps) => {
 
 	const showExample = async () => {
 		form.setValue("term", `${EXAMPLE_PLAYLIST}`);
-
-		await delay(1000);
 
 		onSubmit(form.getValues());
 	};

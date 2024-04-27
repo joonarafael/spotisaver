@@ -1,2 +1,2 @@
 export const EXAMPLE_PLAYLIST =
-	"https://open.spotify.com/playlist/0gsHnxZXeIsuUl1qNhe680?si=4cc3d2c5bdce45aa";
+	"https://open.spotify.com/playlist/13d4jfuQOrsJSbKfikWBpy?si=6c9e208ac9f84095";

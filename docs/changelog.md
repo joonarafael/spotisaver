@@ -2,6 +2,10 @@
 
 ## 2024
 
+- April/27; **0.2.5**: changed the example playlist
+
+- April/21; **0.2.6**: added an example playlist
+
 - April/18; **0.2.4**: fixed maximum container width, adjusted background color
 
 ### Beta
@@ -14,9 +18,9 @@
 
 - April/17; **0.2.0**: added unique songs and unique decades to analyzing
 
-- April/17; **0.1.9**: finetuned ratelimiter to return always the "/blocked" route + wrote first version of user manual
+- April/17; **0.1.9**: fine-tuned the rate limiter to return always the "/blocked" route + wrote first version of user manual
 
-- April/15; **0.1.8**: ratelimiter added and first about written
+- April/15; **0.1.8**: rate limiter added and first about written
 
 - April/11; **0.1.7**: much more functionality and algorithms for the analyzing process
 
