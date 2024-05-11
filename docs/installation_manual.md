@@ -67,13 +67,13 @@ cd spotisaver
 Install all required dependencies by executing
 
 ```
-yarn install
+yarn
 ```
 
 or with
 
 ```
-npm install
+npm i
 ```
 
 if you decided to go with NPM. Always replace `yarn` with `npm` if you're using NPM.
@@ -106,7 +106,7 @@ If you do want to use the provided middleware configuration, please add addition
 After all dependencies have been successfully installed, and your environment is set up, the application can be started with
 
 ```
-yarn run dev
+yarn dev
 ```
 
 Now the application can be accessed with the web browser of your choice. Default port for the application is **3000** ([localhost:3000](localhost:3000 "Port 3000 on your localhost")), but you can retrieve the port information also from the terminal logs after launching the application.
